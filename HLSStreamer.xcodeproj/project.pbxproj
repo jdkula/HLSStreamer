@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FBA929E829112CA000785A41 /* HtmlComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929E729112CA000785A41 /* HtmlComponents.swift */; };
+		FBA929EA29112DB200785A41 /* M3u8Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929E929112DB200785A41 /* M3u8Collector.swift */; };
+		FBA929EC29112EAC00785A41 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929EB29112EAC00785A41 /* Segment.swift */; };
 		FBCB5EBD2910950E000C96A7 /* HLSStreamerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EBC2910950E000C96A7 /* HLSStreamerApp.swift */; };
 		FBCB5EBF2910950E000C96A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EBE2910950E000C96A7 /* ContentView.swift */; };
 		FBCB5EC12910950E000C96A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBCB5EC02910950E000C96A7 /* Assets.xcassets */; };
@@ -63,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		FBA929E729112CA000785A41 /* HtmlComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlComponents.swift; sourceTree = "<group>"; };
+		FBA929E929112DB200785A41 /* M3u8Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3u8Collector.swift; sourceTree = "<group>"; };
+		FBA929EB29112EAC00785A41 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		FBCB5EB92910950E000C96A7 /* HLSStreamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLSStreamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBCB5EBC2910950E000C96A7 /* HLSStreamerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSStreamerApp.swift; sourceTree = "<group>"; };
 		FBCB5EBE2910950E000C96A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 				FBCB5F102910C166000C96A7 /* VideoSegmenter.swift */,
 				FBE708B02911133D00A4FA3F /* Configuration.swift */,
 				FBA929E729112CA000785A41 /* HtmlComponents.swift */,
+				FBA929E929112DB200785A41 /* M3u8Collector.swift */,
+				FBA929EB29112EAC00785A41 /* Segment.swift */,
 			);
 			path = HLSStreamerContentUploadExtension;
 			sourceTree = "<group>";
@@ -345,7 +351,9 @@
 				FBCB5F0B2910BB9B000C96A7 /* HLSServer.swift in Sources */,
 				FBCB5EF22910BA3C000C96A7 /* SampleHandler.swift in Sources */,
 				FBE708B12911133D00A4FA3F /* Configuration.swift in Sources */,
+				FBA929EC29112EAC00785A41 /* Segment.swift in Sources */,
 				FBA929E829112CA000785A41 /* HtmlComponents.swift in Sources */,
+				FBA929EA29112DB200785A41 /* M3u8Collector.swift in Sources */,
 				FBCB5F112910C166000C96A7 /* VideoSegmenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

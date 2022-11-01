@@ -8,52 +8,46 @@
 import Foundation
 import AVKit
 
-struct Segment {
-    let index: Int
-    let isInitializationSegment: Bool
-    let report: AVAssetSegmentReport?
-    var timingReport: AVAssetSegmentTrackReport?
-}
 
 class VideoSegmenter: NSObject, AVAssetWriterDelegate {
-    var outputWriter: AVAssetWriter
-    var videoIn: AVAssetWriterInput
-    var audioIn: AVAssetWriterInput
-    var finished: Bool
+    private var outputWriter_: AVAssetWriter
+    private var videoIn_: AVAssetWriterInput
+    private var audioIn_: AVAssetWriterInput
+    private var finished_: Bool
     
-    let outputDir: URL
+    private let outputDir_: URL
     
-    var curSeq = 0
+    private var curSeq_ = 0
     
-    var sessionStarted: Bool
+    private var sessionStarted_: Bool
     
-    var onSegment: ((Segment) -> Void)?
+    private var onSegment_: ((Segment) -> Void)?
     
     init(outputDir: URL, config: FMP4Configuration) {
-        self.outputDir = outputDir
-        self.sessionStarted = false
-        self.finished = false
+        outputDir_ = outputDir
+        sessionStarted_ = false
+        finished_ = false
 
-        self.outputWriter = AVAssetWriter(contentType: UTType(AVFileType.mp4.rawValue)!)
-                
-        self.videoIn = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: config.videoCompressionSettings)
-        self.audioIn = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: config.audioCompressionSettings)
+        outputWriter_ = AVAssetWriter(contentType: UTType(AVFileType.mp4.rawValue)!)
+           
+        videoIn_ = AVAssetWriterInput(mediaType: AVMediaType.video, outputSettings: config.videoCompressionSettings)
+        audioIn_ = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: config.audioCompressionSettings)
         
         super.init()
         
-        self.outputWriter.outputFileTypeProfile = .mpeg4AppleHLS
-        self.outputWriter.preferredOutputSegmentInterval = CMTime(seconds: Double(config.segmentDuration), preferredTimescale: 1)
-        self.outputWriter.delegate = self
+        outputWriter_.outputFileTypeProfile = .mpeg4AppleHLS
+        outputWriter_.preferredOutputSegmentInterval = CMTime(seconds: Double(config.segmentDuration), preferredTimescale: 1)
+        outputWriter_.delegate = self
         
-        self.videoIn.expectsMediaDataInRealTime = true
-        self.audioIn.expectsMediaDataInRealTime = true
+        videoIn_.expectsMediaDataInRealTime = true
+        audioIn_.expectsMediaDataInRealTime = true
         
-        self.outputWriter.add(self.videoIn)
-        self.outputWriter.add(self.audioIn)
+        outputWriter_.add(videoIn_)
+        outputWriter_.add(audioIn_)
     }
     
     func setOnSegment(onSegment: @escaping (Segment) -> Void) {
-        self.onSegment = onSegment
+        self.onSegment_ = onSegment
     }
     
     @objc func assetWriter(_ writer: AVAssetWriter,
@@ -73,64 +67,63 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         }
         
         if isInitializationSegment {
-            try! segmentData.write(to: self.outputDir.appending(component: "header.mp4"))
+            try! segmentData.write(to: outputDir_.appending(component: "header.mp4"))
         } else {
-            try! segmentData.write(to: self.outputDir.appending(component: "\(curSeq).m4s"))
+            try! segmentData.write(to: outputDir_.appending(component: "\(curSeq_).m4s"))
         }
         
-        self.onSegment?(Segment(index: curSeq, isInitializationSegment: isInitializationSegment, report: segmentReport, timingReport: segmentReport?.trackReports.first(where: {$0.mediaType == .video})))
+        onSegment_?(Segment(
+            index: curSeq_,
+            isInitializationSegment: isInitializationSegment,
+            report: segmentReport,
+            timingReport: segmentReport?.trackReports.first(where: {$0.mediaType == .video})))
         
-        curSeq += 1
+        curSeq_ += 1
     }
     
+    private func noteChunk_(chunk: CMSampleBuffer) {
+        if !sessionStarted_ {
+            self.outputWriter_.initialSegmentStartTime = CMSampleBufferGetPresentationTimeStamp(chunk)
+            if !self.outputWriter_.startWriting() {
+                print("Failed?", self.outputWriter_.status, self.outputWriter_.error as Any)
+            }
+            self.outputWriter_.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(chunk))
+            sessionStarted_ = true
+        }
+    }
+
     func processVideo(chunk: CMSampleBuffer) {
-        if finished {
+        if finished_ {
             return
         }
         
-        if !sessionStarted {
-            self.outputWriter.initialSegmentStartTime = CMSampleBufferGetPresentationTimeStamp(chunk)
-            if !self.outputWriter.startWriting() {
-                print("Failed?", self.outputWriter.status, self.outputWriter.error)
-            }
-            self.outputWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(chunk))
-            sessionStarted = true
-        }
+        noteChunk_(chunk: chunk)
         
-        if videoIn.isReadyForMoreMediaData {
-            videoIn.append(chunk)
-        } else {
-            print("Dropped data...")
+        if videoIn_.isReadyForMoreMediaData {
+            videoIn_.append(chunk)
         }
     }
     
     func processAudio(chunk: CMSampleBuffer) {
-        if finished {
+        if finished_ {
             return
         }
         
-        if !sessionStarted {
-            self.outputWriter.initialSegmentStartTime = CMSampleBufferGetPresentationTimeStamp(chunk)
-            if !self.outputWriter.startWriting() {
-                print("Failed?", self.outputWriter.status, self.outputWriter.error)
-            }
-            self.outputWriter.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(chunk))
-            sessionStarted = true
-        }
+        noteChunk_(chunk: chunk)
         
-        if audioIn.isReadyForMoreMediaData {
-            audioIn.append(chunk)
+        if audioIn_.isReadyForMoreMediaData {
+            audioIn_.append(chunk)
         }
     }
     
     func finish() {
-        if finished {
+        if finished_ {
             return
         }
         
-        finished = true
-        outputWriter.finishWriting {
-            print("Done?")
+        finished_ = true
+        outputWriter_.finishWriting {
+            print("Done")
         }
     }
 }
