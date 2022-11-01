@@ -78,8 +78,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
             try! segmentData.write(to: self.outputDir.appending(component: "\(curSeq).m4s"))
         }
         
-        var seg = Segment(index: curSeq, isInitializationSegment: isInitializationSegment, report: segmentReport, timingReport: segmentReport?.trackReports.first(where: {$0.mediaType == .video}));
-        self.onSegment?(seg)
+        self.onSegment?(Segment(index: curSeq, isInitializationSegment: isInitializationSegment, report: segmentReport, timingReport: segmentReport?.trackReports.first(where: {$0.mediaType == .video})))
         
         curSeq += 1
     }
