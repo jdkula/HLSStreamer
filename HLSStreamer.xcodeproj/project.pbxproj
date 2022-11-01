@@ -11,7 +11,53 @@
 		FBCB5EBF2910950E000C96A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EBE2910950E000C96A7 /* ContentView.swift */; };
 		FBCB5EC12910950E000C96A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBCB5EC02910950E000C96A7 /* Assets.xcassets */; };
 		FBCB5EC42910950E000C96A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBCB5EC32910950E000C96A7 /* Preview Assets.xcassets */; };
+		FBCB5ECC291096C9000C96A7 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5ECB291096C9000C96A7 /* ScreenRecorder.swift */; };
+		FBCB5ED32910B4C6000C96A7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FBCB5ED22910B4C6000C96A7 /* Swifter */; };
+		FBCB5EEF2910BA3C000C96A7 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5EDB2910B966000C96A7 /* ReplayKit.framework */; };
+		FBCB5EF22910BA3C000C96A7 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EF12910BA3C000C96A7 /* SampleHandler.swift */; };
+		FBCB5EF92910BA3C000C96A7 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5EDB2910B966000C96A7 /* ReplayKit.framework */; };
+		FBCB5EFA2910BA3C000C96A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5EDD2910B966000C96A7 /* UIKit.framework */; };
+		FBCB5EFD2910BA3C000C96A7 /* BroadcastSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */; };
+		FBCB5F012910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FBCB5F042910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FBCB5F0B2910BB9B000C96A7 /* HLSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5ECF2910B485000C96A7 /* HLSServer.swift */; };
+		FBCB5F0F2910BDBE000C96A7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FBCB5F0E2910BDBE000C96A7 /* Swifter */; };
+		FBCB5F112910C166000C96A7 /* VideoSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5F102910C166000C96A7 /* VideoSegment.swift */; };
+		FBCB5F132910C1DB000C96A7 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5F122910C1DB000C96A7 /* AVKit.framework */; };
+		FBCB5F152910C1E0000C96A7 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5F142910C1E0000C96A7 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FBCB5EFF2910BA3C000C96A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBCB5EB12910950E000C96A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBCB5EF72910BA3C000C96A7;
+			remoteInfo = HLSStreamerContentUploadExtensionSetupUI;
+		};
+		FBCB5F022910BA3C000C96A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FBCB5EB12910950E000C96A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBCB5EED2910BA3C000C96A7;
+			remoteInfo = HLSStreamerContentUploadExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FBCB5EE92910B966000C96A7 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FBCB5F012910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex in Embed Foundation Extensions */,
+				FBCB5F042910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FBCB5EB92910950E000C96A7 /* HLSStreamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLSStreamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,6 +65,21 @@
 		FBCB5EBE2910950E000C96A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FBCB5EC02910950E000C96A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBCB5EC32910950E000C96A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FBCB5ECA29109638000C96A7 /* HLSStreamer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLSStreamer.entitlements; sourceTree = "<group>"; };
+		FBCB5ECB291096C9000C96A7 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
+		FBCB5ECF2910B485000C96A7 /* HLSServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLSServer.swift; sourceTree = "<group>"; };
+		FBCB5ED42910B80C000C96A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FBCB5EDB2910B966000C96A7 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		FBCB5EDD2910B966000C96A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HLSStreamerContentUploadExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBCB5EF12910BA3C000C96A7 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
+		FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HLSStreamerContentUploadExtensionSetupUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastSetupViewController.swift; sourceTree = "<group>"; };
+		FBCB5EFE2910BA3C000C96A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBCB5F0C2910BD1F000C96A7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBCB5F102910C166000C96A7 /* VideoSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSegment.swift; sourceTree = "<group>"; };
+		FBCB5F122910C1DB000C96A7 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		FBCB5F142910C1E0000C96A7 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +87,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBCB5ED32910B4C6000C96A7 /* Swifter in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBCB5EEB2910BA3C000C96A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBCB5F152910C1E0000C96A7 /* VideoToolbox.framework in Frameworks */,
+				FBCB5EEF2910BA3C000C96A7 /* ReplayKit.framework in Frameworks */,
+				FBCB5F0F2910BDBE000C96A7 /* Swifter in Frameworks */,
+				FBCB5F132910C1DB000C96A7 /* AVKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBCB5EF52910BA3C000C96A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBCB5EF92910BA3C000C96A7 /* ReplayKit.framework in Frameworks */,
+				FBCB5EFA2910BA3C000C96A7 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				FBCB5EBB2910950E000C96A7 /* HLSStreamer */,
+				FBCB5EF02910BA3C000C96A7 /* HLSStreamerContentUploadExtension */,
+				FBCB5EFB2910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */,
+				FBCB5EDA2910B966000C96A7 /* Frameworks */,
 				FBCB5EBA2910950E000C96A7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				FBCB5EB92910950E000C96A7 /* HLSStreamer.app */,
+				FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */,
+				FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,10 +138,13 @@
 		FBCB5EBB2910950E000C96A7 /* HLSStreamer */ = {
 			isa = PBXGroup;
 			children = (
+				FBCB5ED42910B80C000C96A7 /* Info.plist */,
+				FBCB5ECA29109638000C96A7 /* HLSStreamer.entitlements */,
 				FBCB5EBC2910950E000C96A7 /* HLSStreamerApp.swift */,
 				FBCB5EBE2910950E000C96A7 /* ContentView.swift */,
 				FBCB5EC02910950E000C96A7 /* Assets.xcassets */,
 				FBCB5EC22910950E000C96A7 /* Preview Content */,
+				FBCB5ECB291096C9000C96A7 /* ScreenRecorder.swift */,
 			);
 			path = HLSStreamer;
 			sourceTree = "<group>";
@@ -67,6 +157,37 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		FBCB5EDA2910B966000C96A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBCB5F142910C1E0000C96A7 /* VideoToolbox.framework */,
+				FBCB5F122910C1DB000C96A7 /* AVKit.framework */,
+				FBCB5EDB2910B966000C96A7 /* ReplayKit.framework */,
+				FBCB5EDD2910B966000C96A7 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBCB5EF02910BA3C000C96A7 /* HLSStreamerContentUploadExtension */ = {
+			isa = PBXGroup;
+			children = (
+				FBCB5F0C2910BD1F000C96A7 /* Info.plist */,
+				FBCB5ECF2910B485000C96A7 /* HLSServer.swift */,
+				FBCB5EF12910BA3C000C96A7 /* SampleHandler.swift */,
+				FBCB5F102910C166000C96A7 /* VideoSegment.swift */,
+			);
+			path = HLSStreamerContentUploadExtension;
+			sourceTree = "<group>";
+		};
+		FBCB5EFB2910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */ = {
+			isa = PBXGroup;
+			children = (
+				FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */,
+				FBCB5EFE2910BA3C000C96A7 /* Info.plist */,
+			);
+			path = HLSStreamerContentUploadExtensionSetupUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,15 +198,58 @@
 				FBCB5EB52910950E000C96A7 /* Sources */,
 				FBCB5EB62910950E000C96A7 /* Frameworks */,
 				FBCB5EB72910950E000C96A7 /* Resources */,
+				FBCB5EE92910B966000C96A7 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FBCB5F002910BA3C000C96A7 /* PBXTargetDependency */,
+				FBCB5F032910BA3C000C96A7 /* PBXTargetDependency */,
+			);
+			name = HLSStreamer;
+			packageProductDependencies = (
+				FBCB5ED22910B4C6000C96A7 /* Swifter */,
+			);
+			productName = HLSStreamer;
+			productReference = FBCB5EB92910950E000C96A7 /* HLSStreamer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBCB5EED2910BA3C000C96A7 /* HLSStreamerContentUploadExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBCB5F082910BA3C000C96A7 /* Build configuration list for PBXNativeTarget "HLSStreamerContentUploadExtension" */;
+			buildPhases = (
+				FBCB5EEA2910BA3C000C96A7 /* Sources */,
+				FBCB5EEB2910BA3C000C96A7 /* Frameworks */,
+				FBCB5EEC2910BA3C000C96A7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = HLSStreamer;
-			productName = HLSStreamer;
-			productReference = FBCB5EB92910950E000C96A7 /* HLSStreamer.app */;
-			productType = "com.apple.product-type.application";
+			name = HLSStreamerContentUploadExtension;
+			packageProductDependencies = (
+				FBCB5F0E2910BDBE000C96A7 /* Swifter */,
+			);
+			productName = HLSStreamerContentUploadExtension;
+			productReference = FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		FBCB5EF72910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBCB5F052910BA3C000C96A7 /* Build configuration list for PBXNativeTarget "HLSStreamerContentUploadExtensionSetupUI" */;
+			buildPhases = (
+				FBCB5EF42910BA3C000C96A7 /* Sources */,
+				FBCB5EF52910BA3C000C96A7 /* Frameworks */,
+				FBCB5EF62910BA3C000C96A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HLSStreamerContentUploadExtensionSetupUI;
+			productName = HLSStreamerContentUploadExtensionSetupUI;
+			productReference = FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,6 +264,12 @@
 					FBCB5EB82910950E000C96A7 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
+					FBCB5EED2910BA3C000C96A7 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					FBCB5EF72910BA3C000C96A7 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
 				};
 			};
 			buildConfigurationList = FBCB5EB42910950E000C96A7 /* Build configuration list for PBXProject "HLSStreamer" */;
@@ -111,11 +281,16 @@
 				Base,
 			);
 			mainGroup = FBCB5EB02910950E000C96A7;
+			packageReferences = (
+				FBCB5ED12910B4C6000C96A7 /* XCRemoteSwiftPackageReference "swifter" */,
+			);
 			productRefGroup = FBCB5EBA2910950E000C96A7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				FBCB5EB82910950E000C96A7 /* HLSStreamer */,
+				FBCB5EED2910BA3C000C96A7 /* HLSStreamerContentUploadExtension */,
+				FBCB5EF72910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +305,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FBCB5EEC2910BA3C000C96A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBCB5EF62910BA3C000C96A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -139,10 +328,42 @@
 			files = (
 				FBCB5EBF2910950E000C96A7 /* ContentView.swift in Sources */,
 				FBCB5EBD2910950E000C96A7 /* HLSStreamerApp.swift in Sources */,
+				FBCB5ECC291096C9000C96A7 /* ScreenRecorder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBCB5EEA2910BA3C000C96A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBCB5F0B2910BB9B000C96A7 /* HLSServer.swift in Sources */,
+				FBCB5EF22910BA3C000C96A7 /* SampleHandler.swift in Sources */,
+				FBCB5F112910C166000C96A7 /* VideoSegment.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FBCB5EF42910BA3C000C96A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBCB5EFD2910BA3C000C96A7 /* BroadcastSetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FBCB5F002910BA3C000C96A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBCB5EF72910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */;
+			targetProxy = FBCB5EFF2910BA3C000C96A7 /* PBXContainerItemProxy */;
+		};
+		FBCB5F032910BA3C000C96A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FBCB5EED2910BA3C000C96A7 /* HLSStreamerContentUploadExtension */;
+			targetProxy = FBCB5F022910BA3C000C96A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FBCB5EC52910950E000C96A7 /* Debug */ = {
@@ -262,18 +483,21 @@
 		FBCB5EC82910950E000C96A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HLSStreamer/HLSStreamer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HLSStreamer/Preview Content\"";
+				DEVELOPMENT_TEAM = F865XNG7F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HLSStreamer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -290,18 +514,21 @@
 		FBCB5EC92910950E000C96A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HLSStreamer/HLSStreamer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HLSStreamer/Preview Content\"";
+				DEVELOPMENT_TEAM = F865XNG7F7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HLSStreamer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +536,106 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.jdkula.HLSStreamer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FBCB5F062910BA3C000C96A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F865XNG7F7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HLSStreamerContentUploadExtensionSetupUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HLSStreamerContentUploadExtensionSetupUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jdkula.HLSStreamer.HLSStreamerContentUploadExtensionSetupUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBCB5F072910BA3C000C96A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F865XNG7F7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HLSStreamerContentUploadExtensionSetupUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HLSStreamerContentUploadExtensionSetupUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jdkula.HLSStreamer.HLSStreamerContentUploadExtensionSetupUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FBCB5F092910BA3C000C96A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F865XNG7F7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HLSStreamerContentUploadExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HLSStreamerContentUploadExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jdkula.HLSStreamer.HLSStreamerContentUploadExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBCB5F0A2910BA3C000C96A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F865XNG7F7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HLSStreamerContentUploadExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HLSStreamerContentUploadExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jdkula.HLSStreamer.HLSStreamerContentUploadExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -336,7 +663,49 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		FBCB5F052910BA3C000C96A7 /* Build configuration list for PBXNativeTarget "HLSStreamerContentUploadExtensionSetupUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBCB5F062910BA3C000C96A7 /* Debug */,
+				FBCB5F072910BA3C000C96A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBCB5F082910BA3C000C96A7 /* Build configuration list for PBXNativeTarget "HLSStreamerContentUploadExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBCB5F092910BA3C000C96A7 /* Debug */,
+				FBCB5F0A2910BA3C000C96A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FBCB5ED12910B4C6000C96A7 /* XCRemoteSwiftPackageReference "swifter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/httpswift/swifter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FBCB5ED22910B4C6000C96A7 /* Swifter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBCB5ED12910B4C6000C96A7 /* XCRemoteSwiftPackageReference "swifter" */;
+			productName = Swifter;
+		};
+		FBCB5F0E2910BDBE000C96A7 /* Swifter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBCB5ED12910B4C6000C96A7 /* XCRemoteSwiftPackageReference "swifter" */;
+			productName = Swifter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FBCB5EB12910950E000C96A7 /* Project object */;
 }
