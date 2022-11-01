@@ -22,9 +22,10 @@
 		FBCB5F042910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FBCB5F0B2910BB9B000C96A7 /* HLSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5ECF2910B485000C96A7 /* HLSServer.swift */; };
 		FBCB5F0F2910BDBE000C96A7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FBCB5F0E2910BDBE000C96A7 /* Swifter */; };
-		FBCB5F112910C166000C96A7 /* VideoSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5F102910C166000C96A7 /* VideoSegment.swift */; };
+		FBCB5F112910C166000C96A7 /* VideoSegmenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5F102910C166000C96A7 /* VideoSegmenter.swift */; };
 		FBCB5F132910C1DB000C96A7 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5F122910C1DB000C96A7 /* AVKit.framework */; };
 		FBCB5F152910C1E0000C96A7 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5F142910C1E0000C96A7 /* VideoToolbox.framework */; };
+		FBE708B12911133D00A4FA3F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE708B02911133D00A4FA3F /* Configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,9 +78,10 @@
 		FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastSetupViewController.swift; sourceTree = "<group>"; };
 		FBCB5EFE2910BA3C000C96A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBCB5F0C2910BD1F000C96A7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBCB5F102910C166000C96A7 /* VideoSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSegment.swift; sourceTree = "<group>"; };
+		FBCB5F102910C166000C96A7 /* VideoSegmenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSegmenter.swift; sourceTree = "<group>"; };
 		FBCB5F122910C1DB000C96A7 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		FBCB5F142910C1E0000C96A7 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		FBE708B02911133D00A4FA3F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +176,8 @@
 				FBCB5F0C2910BD1F000C96A7 /* Info.plist */,
 				FBCB5ECF2910B485000C96A7 /* HLSServer.swift */,
 				FBCB5EF12910BA3C000C96A7 /* SampleHandler.swift */,
-				FBCB5F102910C166000C96A7 /* VideoSegment.swift */,
+				FBCB5F102910C166000C96A7 /* VideoSegmenter.swift */,
+				FBE708B02911133D00A4FA3F /* Configuration.swift */,
 			);
 			path = HLSStreamerContentUploadExtension;
 			sourceTree = "<group>";
@@ -338,7 +341,8 @@
 			files = (
 				FBCB5F0B2910BB9B000C96A7 /* HLSServer.swift in Sources */,
 				FBCB5EF22910BA3C000C96A7 /* SampleHandler.swift in Sources */,
-				FBCB5F112910C166000C96A7 /* VideoSegment.swift in Sources */,
+				FBE708B12911133D00A4FA3F /* Configuration.swift in Sources */,
+				FBCB5F112910C166000C96A7 /* VideoSegmenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

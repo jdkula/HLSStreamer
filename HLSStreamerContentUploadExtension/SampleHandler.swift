@@ -13,9 +13,13 @@ class SampleHandler: RPBroadcastSampleHandler {
     var targetDir: URL
     var server: HLSServer?
     var startTimestamp: Double?
-    var seg: VideoSegment?
-        
+    var seg: VideoSegmenter
+    var curSeq: Int
+    
+    var config: FMP4Configuration
+            
     override init() {
+        self.curSeq = 0;
         self.fm = FileManager()
         do {
             self.targetDir = try self.fm.url(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.allDomainsMask, appropriateFor: nil, create: true)
@@ -23,7 +27,18 @@ class SampleHandler: RPBroadcastSampleHandler {
             print("TARGET DIR FAILED")
             fatalError("Target dir failed...")
         }
+        
+        self.config = FMP4Configuration()
+        config.videoCompressionSettings["AVVideoWidthKey"] = UIScreen.main.bounds.size.height
+        config.videoCompressionSettings["AVVideoHeightKey"] = UIScreen.main.bounds.size.width
+
+        self.seg = VideoSegmenter(outputDir: self.targetDir, config: config)
+        
         super.init()
+        
+        self.seg.setOnSegment { seg in
+            self.onSegment(seg: seg)
+        }
         
         try! self.fm.contentsOfDirectory(at: self.targetDir, includingPropertiesForKeys: nil).forEach { item in
             do {
@@ -33,8 +48,15 @@ class SampleHandler: RPBroadcastSampleHandler {
             }
         }
         
-        self.seg = VideoSegment(outputDir: self.targetDir, seq: 0)
         
+    }
+    
+    func onSegment(seg: Segment) {
+        if seg.isInitializationSegment {
+            server?.initM3u8(config: self.config, segment: seg)
+        } else {
+            server?.addSegment(segment: seg)
+        }
     }
 
     override func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?) {
@@ -58,24 +80,29 @@ class SampleHandler: RPBroadcastSampleHandler {
     override func broadcastFinished() {
         // User has requested to finish the broadcast.
         server?.stop()
+        try! self.fm.contentsOfDirectory(at: self.targetDir, includingPropertiesForKeys: []).forEach { url in
+            try! self.fm.removeItem(at: url)
+        }
+    }
+    
+    func noteChunk(chunk: CMSampleBuffer) {
+        let ts = CMSampleBufferGetPresentationTimeStamp(chunk).seconds
+        if (startTimestamp == nil) {
+            startTimestamp = ts
+        }
     }
     
     override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
         switch sampleBufferType {
         case RPSampleBufferType.video:
             // Handle video sample buffer
-            let ts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer).seconds
-            if (startTimestamp == nil) {
-                startTimestamp = ts
-            }
-            if (ts - startTimestamp! > 10) {
-                self.seg?.finish()
-            }
-            self.seg?.processVideo(chunk: sampleBuffer)
-            print("Got video sample with timestamp ", ts-startTimestamp!, "s")
+            noteChunk(chunk: sampleBuffer)
+            self.seg.processVideo(chunk: sampleBuffer)
             break
         case RPSampleBufferType.audioApp:
             // Handle audio sample buffer for app audio
+            noteChunk(chunk: sampleBuffer)
+            self.seg.processAudio(chunk: sampleBuffer)
             break
         case RPSampleBufferType.audioMic:
             // Handle audio sample buffer for mic audio

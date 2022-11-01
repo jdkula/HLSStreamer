@@ -13,7 +13,9 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Broadcast to HLSStreamer from Control Center to start the stream")
+            Text("Server will start at http://<IPAD IP ADDRESS>:8888")
+            Text("HLS stream at /index.m3u8")
         }
         .padding()
     }
