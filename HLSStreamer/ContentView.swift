@@ -8,9 +8,7 @@
 import SwiftUI
 import ReplayKit
 
-struct ContentView: View {
-    var broadcastPicker: RPSystemBroadcastPickerView?
-    
+struct ContentView: View {    
     var body: some View {
         VStack {
             Image(systemName: "globe")

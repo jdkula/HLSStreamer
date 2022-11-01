@@ -9,7 +9,8 @@ import SwiftUI
 
 @main
 struct HLSStreamerApp: App {
-    var body: some Scene {
+    var body: some
+    Scene {
         WindowGroup {
             ContentView()
         }

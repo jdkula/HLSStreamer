@@ -4,10 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>HLSStreamer Release.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>HLSStreamer.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>HLSStreamerContentUploadExtension.xcscheme_^#shared#^_</key>
 		<dict>
@@ -23,6 +28,24 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>FBCB5EB82910950E000C96A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBCB5EED2910BA3C000C96A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBCB5EF72910BA3C000C96A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

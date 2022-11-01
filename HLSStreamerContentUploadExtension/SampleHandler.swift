@@ -19,7 +19,7 @@ class SampleHandler: RPBroadcastSampleHandler {
             
     override init() {
         do {
-            self.targetDir_ = try FileManager.default.url(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.allDomainsMask, appropriateFor: nil, create: true).appending(component: "video")
+            self.targetDir_ = try FileManager.default.url(for: FileManager.SearchPathDirectory.cachesDirectory, in: FileManager.SearchPathDomainMask.allDomainsMask, appropriateFor: nil, create: true)
         } catch {
             print("TARGET DIR FAILED")
             fatalError("Target dir failed...")
@@ -71,7 +71,7 @@ class SampleHandler: RPBroadcastSampleHandler {
         server_?.stop()
         clearTarget_()
         server_ = nil
-        m3u8_ = M3u8Collector(folderPrefix: self.targetDir_)
+        m3u8_ = M3u8Collector(folderPrefix: "video")
     }
     
     private func clearTarget_() {

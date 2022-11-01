@@ -24,7 +24,7 @@ class HLSServer {
     <head>
         <title>Playback</title>
         <style>
-            body { margin: 0; }
+            html, body { margin: 0; background: transparent; }
         </style>
         <style>
             \(kCss)
