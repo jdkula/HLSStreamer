@@ -20,7 +20,7 @@ struct UserHLSConfiguration : Codable {
     
     init() {
         self.port = "8888"
-        self.segmentDuration = 1
+        self.segmentDuration = 6
         self.videoBitrateMbps = 6
     }
     

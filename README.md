@@ -18,9 +18,6 @@ While streaming to the app, your iDevice will host a server by default at port `
 The UI provides a couple options:
 - `Port`: You can adjust what port the server runs on.
 - `Segment Duration`: The higher this is, the more reliable the stream, but the longer the delay.
-  The default of 1 second is extremely low for use over the internet, but over a local network
-  seems to provide reasonable stability and a delay of only about 5 to 7 seconds (in my testing).
-  Apple usually recommends 6 seconds, whch leads to a delay of 30-60 seconds.
 - `Video Bitrate (Mbps)`: The higher this is, the higher quality the streams but the higher the bandwidth
   they use. In my testing, adjusting this hasn't seemed to do much.
 
