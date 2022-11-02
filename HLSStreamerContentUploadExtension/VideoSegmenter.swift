@@ -66,17 +66,16 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
             return
         }
         
-        if isInitializationSegment {
-            try! segmentData.write(to: outputDir_.appending(component: "header.mp4"))
-        } else {
-            try! segmentData.write(to: outputDir_.appending(component: "\(curSeq_).m4s"))
-        }
-        
+        let url = outputDir_.appending(component: isInitializationSegment ? "header.mp4" : "\(curSeq_).m4s")
+        try! segmentData.write(to: url)
         onSegment_?(Segment(
+            url: url,
             index: curSeq_,
             isInitializationSegment: isInitializationSegment,
             report: segmentReport,
             timingReport: segmentReport?.trackReports.first(where: {$0.mediaType == .video})))
+
+        
         
         curSeq_ += 1
     }

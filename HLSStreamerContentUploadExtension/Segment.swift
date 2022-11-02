@@ -9,6 +9,7 @@ import Foundation
 import AVKit
 
 struct Segment {
+    let url: URL
     let index: Int
     let isInitializationSegment: Bool
     let report: AVAssetSegmentReport?
