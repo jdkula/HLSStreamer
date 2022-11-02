@@ -1,5 +1,5 @@
 # HLSStreamer
-iOS app that allows you to stream your screen over HLS, no external server necessary.
+iOS app that allows you to stream your screen over HLS, no external server or desktop-side applications necessary.
 
 ## Building
 
