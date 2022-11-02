@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB5DD4CC29120DF200B679B0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4CB29120DF200B679B0 /* Util.swift */; };
+		FB5DD4CE2912166B00B679B0 /* ContentUploadUILaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4CD2912166B00B679B0 /* ContentUploadUILaunch.swift */; };
+		FB5DD4CF2912167700B679B0 /* BroadcastSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */; };
 		FBA929E829112CA000785A41 /* HtmlComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929E729112CA000785A41 /* HtmlComponents.swift */; };
 		FBA929EA29112DB200785A41 /* M3u8Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929E929112DB200785A41 /* M3u8Collector.swift */; };
 		FBA929EC29112EAC00785A41 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929EB29112EAC00785A41 /* Segment.swift */; };
@@ -18,10 +21,6 @@
 		FBCB5ED32910B4C6000C96A7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FBCB5ED22910B4C6000C96A7 /* Swifter */; };
 		FBCB5EEF2910BA3C000C96A7 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5EDB2910B966000C96A7 /* ReplayKit.framework */; };
 		FBCB5EF22910BA3C000C96A7 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EF12910BA3C000C96A7 /* SampleHandler.swift */; };
-		FBCB5EF92910BA3C000C96A7 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5EDB2910B966000C96A7 /* ReplayKit.framework */; };
-		FBCB5EFA2910BA3C000C96A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCB5EDD2910B966000C96A7 /* UIKit.framework */; };
-		FBCB5EFD2910BA3C000C96A7 /* BroadcastSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */; };
-		FBCB5F012910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FBCB5F042910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FBCB5F0B2910BB9B000C96A7 /* HLSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5ECF2910B485000C96A7 /* HLSServer.swift */; };
 		FBCB5F0F2910BDBE000C96A7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FBCB5F0E2910BDBE000C96A7 /* Swifter */; };
@@ -32,13 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FBCB5EFF2910BA3C000C96A7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FBCB5EB12910950E000C96A7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FBCB5EF72910BA3C000C96A7;
-			remoteInfo = HLSStreamerContentUploadExtensionSetupUI;
-		};
 		FBCB5F022910BA3C000C96A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FBCB5EB12910950E000C96A7 /* Project object */;
@@ -55,7 +47,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FBCB5F012910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex in Embed Foundation Extensions */,
 				FBCB5F042910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -66,6 +57,8 @@
 /* Begin PBXFileReference section */
 		FB2DD5D829113998007BC50D /* HLSStreamer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLSStreamer.entitlements; sourceTree = "<group>"; };
 		FB2DD5D929113C99007BC50D /* lil icon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lil icon.afdesign"; sourceTree = "<group>"; };
+		FB5DD4CB29120DF200B679B0 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		FB5DD4CD2912166B00B679B0 /* ContentUploadUILaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUploadUILaunch.swift; sourceTree = "<group>"; };
 		FBA929E729112CA000785A41 /* HtmlComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlComponents.swift; sourceTree = "<group>"; };
 		FBA929E929112DB200785A41 /* M3u8Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3u8Collector.swift; sourceTree = "<group>"; };
 		FBA929EB29112EAC00785A41 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
@@ -81,9 +74,7 @@
 		FBCB5EDD2910B966000C96A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HLSStreamerContentUploadExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBCB5EF12910BA3C000C96A7 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
-		FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HLSStreamerContentUploadExtensionSetupUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastSetupViewController.swift; sourceTree = "<group>"; };
-		FBCB5EFE2910BA3C000C96A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBCB5F0C2910BD1F000C96A7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBCB5F102910C166000C96A7 /* VideoSegmenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSegmenter.swift; sourceTree = "<group>"; };
 		FBCB5F122910C1DB000C96A7 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -111,15 +102,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FBCB5EF52910BA3C000C96A7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FBCB5EF92910BA3C000C96A7 /* ReplayKit.framework in Frameworks */,
-				FBCB5EFA2910BA3C000C96A7 /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -129,7 +111,6 @@
 				FB2DD5D929113C99007BC50D /* lil icon.afdesign */,
 				FBCB5EBB2910950E000C96A7 /* HLSStreamer */,
 				FBCB5EF02910BA3C000C96A7 /* HLSStreamerContentUploadExtension */,
-				FBCB5EFB2910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */,
 				FBCB5EDA2910B966000C96A7 /* Frameworks */,
 				FBCB5EBA2910950E000C96A7 /* Products */,
 			);
@@ -140,7 +121,6 @@
 			children = (
 				FBCB5EB92910950E000C96A7 /* HLSStreamer.app */,
 				FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */,
-				FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +135,9 @@
 				FBCB5EC02910950E000C96A7 /* Assets.xcassets */,
 				FBCB5EC22910950E000C96A7 /* Preview Content */,
 				FBCB5ECB291096C9000C96A7 /* ScreenRecorder.swift */,
+				FB5DD4CB29120DF200B679B0 /* Util.swift */,
+				FB5DD4CD2912166B00B679B0 /* ContentUploadUILaunch.swift */,
+				FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */,
 			);
 			path = HLSStreamer;
 			sourceTree = "<group>";
@@ -193,15 +176,6 @@
 			path = HLSStreamerContentUploadExtension;
 			sourceTree = "<group>";
 		};
-		FBCB5EFB2910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */ = {
-			isa = PBXGroup;
-			children = (
-				FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */,
-				FBCB5EFE2910BA3C000C96A7 /* Info.plist */,
-			);
-			path = HLSStreamerContentUploadExtensionSetupUI;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -217,7 +191,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				FBCB5F002910BA3C000C96A7 /* PBXTargetDependency */,
 				FBCB5F032910BA3C000C96A7 /* PBXTargetDependency */,
 			);
 			name = HLSStreamer;
@@ -248,23 +221,6 @@
 			productReference = FBCB5EEE2910BA3C000C96A7 /* HLSStreamerContentUploadExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		FBCB5EF72910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FBCB5F052910BA3C000C96A7 /* Build configuration list for PBXNativeTarget "HLSStreamerContentUploadExtensionSetupUI" */;
-			buildPhases = (
-				FBCB5EF42910BA3C000C96A7 /* Sources */,
-				FBCB5EF52910BA3C000C96A7 /* Frameworks */,
-				FBCB5EF62910BA3C000C96A7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HLSStreamerContentUploadExtensionSetupUI;
-			productName = HLSStreamerContentUploadExtensionSetupUI;
-			productReference = FBCB5EF82910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -279,9 +235,6 @@
 						CreatedOnToolsVersion = 14.0.1;
 					};
 					FBCB5EED2910BA3C000C96A7 = {
-						CreatedOnToolsVersion = 14.0.1;
-					};
-					FBCB5EF72910BA3C000C96A7 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
@@ -304,7 +257,6 @@
 			targets = (
 				FBCB5EB82910950E000C96A7 /* HLSStreamer */,
 				FBCB5EED2910BA3C000C96A7 /* HLSStreamerContentUploadExtension */,
-				FBCB5EF72910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */,
 			);
 		};
 /* End PBXProject section */
@@ -326,13 +278,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FBCB5EF62910BA3C000C96A7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -342,6 +287,9 @@
 			files = (
 				FBCB5EBF2910950E000C96A7 /* ContentView.swift in Sources */,
 				FBCB5EBD2910950E000C96A7 /* HLSStreamerApp.swift in Sources */,
+				FB5DD4CF2912167700B679B0 /* BroadcastSetupViewController.swift in Sources */,
+				FB5DD4CC29120DF200B679B0 /* Util.swift in Sources */,
+				FB5DD4CE2912166B00B679B0 /* ContentUploadUILaunch.swift in Sources */,
 				FBCB5ECC291096C9000C96A7 /* ScreenRecorder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,22 +308,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FBCB5EF42910BA3C000C96A7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FBCB5EFD2910BA3C000C96A7 /* BroadcastSetupViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FBCB5F002910BA3C000C96A7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FBCB5EF72910BA3C000C96A7 /* HLSStreamerContentUploadExtensionSetupUI */;
-			targetProxy = FBCB5EFF2910BA3C000C96A7 /* PBXContainerItemProxy */;
-		};
 		FBCB5F032910BA3C000C96A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FBCB5EED2910BA3C000C96A7 /* HLSStreamerContentUploadExtension */;
@@ -570,56 +505,6 @@
 			};
 			name = Release;
 		};
-		FBCB5F062910BA3C000C96A7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F865XNG7F7;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HLSStreamerContentUploadExtensionSetupUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = HLSStreamerContentUploadExtensionSetupUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.jdkula.HLSStreamer.HLSStreamerContentUploadExtensionSetupUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		FBCB5F072910BA3C000C96A7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F865XNG7F7;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HLSStreamerContentUploadExtensionSetupUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = HLSStreamerContentUploadExtensionSetupUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.jdkula.HLSStreamer.HLSStreamerContentUploadExtensionSetupUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		FBCB5F092910BA3C000C96A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -691,15 +576,6 @@
 			buildConfigurations = (
 				FBCB5EC82910950E000C96A7 /* Debug */,
 				FBCB5EC92910950E000C96A7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FBCB5F052910BA3C000C96A7 /* Build configuration list for PBXNativeTarget "HLSStreamerContentUploadExtensionSetupUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FBCB5F062910BA3C000C96A7 /* Debug */,
-				FBCB5F072910BA3C000C96A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
