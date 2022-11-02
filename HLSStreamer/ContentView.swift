@@ -49,9 +49,9 @@ struct ContentView: View {
                         Label("IP Addresses", systemImage: "wifi")
                         Spacer()
                         VStack {
-                            ForEach(getIPAddresses(), id: \.self) {
-                                Text($0).foregroundColor(Color.gray)
-                            }
+                            Text(getIPAddresses().joined(separator: "\n"))
+                                .foregroundColor(Color.gray)
+                                .multilineTextAlignment(.trailing)
                         }
                     }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)
                     
