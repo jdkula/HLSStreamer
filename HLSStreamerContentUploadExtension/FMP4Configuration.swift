@@ -2,7 +2,10 @@
 //  Configuration.swift
 //  HLSStreamerContentUploadExtension
 //
-//  Created by Jonathan Kula on 11/1/22.
+//  https://developer.apple.com/videos/play/wwdc2020/10011/ was heavily referenced
+//  in the creation of this file.
+//
+//  Created by @jdkula <jonathan@jdkula.dev> on on 11/1/22.
 //
 
 import Foundation
@@ -10,6 +13,7 @@ import AVFoundation
 import VideoToolbox
 import UIKit
 
+/// Conveniently colocates and generates compression settings used elsewhere.
 struct FMP4Configuration {
     var segmentDuration: Double
     var segmentFileNamePrefix = "seq"

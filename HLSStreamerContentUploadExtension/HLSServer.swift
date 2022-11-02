@@ -2,7 +2,14 @@
 //  HLSServer.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 10/31/22.
+//  Provides a simple HTTP server that dynamically generates
+//  an m3u8 playlist from an M3u8Collector, and serves mp4
+//  and m4s files from the specified directory.
+//
+//  It also provides the current device orientation, which can
+//  be used to rotate the video on the client/desktop side.
+//
+//  Created by @jdkula <jonathan@jdkula.dev> on 10/31/22.
 //
 
 import Foundation
@@ -20,71 +27,7 @@ class HLSServer {
         self.m3u8_ = m3u8
         self.server_ = HttpServer()
         server_["/"] = { request in
-            return HttpResponse.ok(.html("""
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Playback</title>
-        <style>
-            html, body { margin: 0; background: transparent; }
-        </style>
-        <style>
-            \(kCss)
-        </style>
-    </head>
-    <body>
-        <video id="hls" class="video-js" width="1080" controls muted autoplay>
-            <source src="index.m3u8" type="application/x-mpegURL">
-        </video>
-
-        <script>
-            \(kVideoJsHls)
-        </script>
-        <script>
-            \(kVideoJs)
-        </script>
-        <script>
-            const player = videojs('hls');
-            player.play();
-        </script>
-        <script>
-            let lastOrientation = "down";
-            async function updateOrientation() {
-                const orientation = await (await fetch("/orientation")).text()
-                console.log("O:", orientation);
-                setTimeout(updateOrientation, 1000);
-            }
-            setTimeout(updateOrientation, 1000);
-        </script>
-        <script>
-            let lastErr = null;
-            let lastBufferEnd = null;
-            let lastBufferEndTs = null;
-            async function findError() {
-                if (player.readyState() === 0) {
-                    if (lastErr === null) {
-                        lastErr = Date.now();
-                    } else if (Date.now() - lastErr > 2000) {
-                        window.location.reload();
-                    }
-                } else {
-                    lastErr = null;
-                }
-
-                if (lastBufferEnd !== player.bufferedEnd()) {
-                    lastBufferEnd = player.bufferedEnd();
-                    lastBufferEndTs = Date.now();
-                }
-                if (Date.now() - lastBufferEndTs > 10000) {
-                    window.location.reload();
-                }
-                setTimeout(findError, 1000);
-            }
-            setTimeout(findError, 1000);
-        </script>
-    </body>
-</html>
-"""))
+            return HttpResponse.ok(.html(kIndexHtml))
         }
         
         server_["/index.m3u8"] = { request in

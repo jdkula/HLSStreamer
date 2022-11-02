@@ -2,7 +2,9 @@
 //  ContentView.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 10/31/22.
+//  The main view for the app
+//
+//  Created by @jdkula <jonathan@jdkula.dev> on 10/31/22.
 //
 
 import SwiftUI
@@ -10,20 +12,38 @@ import ReplayKit
 import Combine
 
 struct ContentView: View {
-    @Binding var config: ConfigurationObj
-    @Binding var isRecording: Bool
-    let onSave: (ConfigurationObj) -> Void
+    @Binding var config: UserHLSConfiguration
+    @Binding var isStreaming: Bool
+    
+    private func getIPInformation_() -> String {
+        if !isStreaming {
+            return "(server off)"
+        }
+        
+        let addresses = getIPAddresses()
+        let ipv4 = addresses.first(where: {s in
+            s.contains(".") && !s.starts(with: "169.")
+        })
+        let ipv6 = getIPAddresses().first(where: {s in
+            s.contains(":") && !s.starts(with: "fe80::")
+        })
+        let fallback = "<IPAD IP ADDRESS>"
+        
+        return ipv4 ?? ipv6 ?? fallback
+    }
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, content: {
                 
+                // <== Title ==>
                 Group {
                     HStack {}.padding()
                     
                     Text("HLSStreamer").font(.system(size: 60, weight: .bold)).padding(EdgeInsets(top: 20, leading: 10, bottom: 0, trailing: 0))
                 }
                 
+                // <== Info Section ==>
                 Group {
                     HStack {
                         Label("IP Addresses", systemImage: "wifi")
@@ -39,27 +59,23 @@ struct ContentView: View {
                         Label("Page Address", systemImage: "globe")
                         Spacer()
                         
-                        Text(!isRecording ? "Server Off" : "http://\(getIPAddresses().first(where: {s in s.contains(".") && !s.starts(with: "169.")}) ?? getIPAddresses().first(where: {s in s.contains(":") && !s.starts(with: "fe80::")}) ?? "<IPAD IP ADDRESS>"):\(config.port)/")
+                        Text(getIPInformation_())
                     }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)
                     
                 }
                 
-                Group {
-                    
-                    HStack {}.padding()
-                    
-                    VStack {
-                        if #available(iOS 15.0, *) {
-                            BroadcastSetupView(isRecording: $isRecording).frame(width: 400, height: 105, alignment: .center)
-                        } else {
-                            Button("Start Recording") {
-                                print("boop")
-                            }.foregroundColor(Color.red).buttonStyle(.automatic)
-                        }
-                    }.frame(maxWidth: .infinity, alignment: .center)
-                                        
+                // <== Start Recording Button ==>
+                if #available(iOS 15.0, *) {
+                    Group {
+                        HStack {}.padding()
+                        
+                        VStack {
+                            BroadcastSetupView(isStreaming: $isStreaming).frame(width: 400, height: 105, alignment: .center)
+                        }.frame(maxWidth: .infinity, alignment: .center)
+                    }
                 }
                 
+                // <== Settings ==>
                 Group {
                     
                     Text("Settings").font(.system(size: 45, weight: .thin))
@@ -73,11 +89,11 @@ struct ContentView: View {
                             if (newValue == config.port) {
                                 return
                             } else if (n == nil) {
-                                onSave(config.withPort(""))
+                                config = config.withPort("")
                             } else if n! > 65_535 {
-                                onSave(config.withPort("65535"))
+                                config = config.withPort("65535")
                             } else {
-                                onSave(config.withPort("\(n!)"))
+                                config = config.withPort("\(n!)")
                             }
                         }
                     }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)
@@ -103,12 +119,11 @@ struct ContentView: View {
                         Label("Reset Values", systemImage: "arrow.clockwise")
                         Spacer()
                         Button("Tap to Reset") {
-                            config = ConfigurationObj()
+                            config = UserHLSConfiguration()
                         }
                     }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)
                     
                 }
-                
             }).padding()
             
             Spacer()
@@ -118,9 +133,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(config: .constant(ConfigurationObj()), isRecording: .constant(false)) {_ in
-            
-        }
+        ContentView(config: .constant(UserHLSConfiguration()), isStreaming: .constant(false))
     }
 }
 

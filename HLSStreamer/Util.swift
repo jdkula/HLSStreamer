@@ -2,12 +2,15 @@
 //  Util.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 11/1/22.
+//  Created by @jdkula <jonathan@jdkula.dev> on 11/1/22.
 
-// https://stackoverflow.com/questions/30748480/swift-get-devices-wifi-ip-address
 
 import Foundation
 
+/**
+ * Gets a list of IP addresses associated with the current device.
+ * Heavily inspired by https://stackoverflow.com/questions/30748480/swift-get-devices-wifi-ip-address
+ */
 func getIPAddresses() -> [String] {
     var addresses: [String] = []
     var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil

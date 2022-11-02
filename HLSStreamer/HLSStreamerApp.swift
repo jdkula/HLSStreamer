@@ -2,23 +2,24 @@
 //  HLSStreamerApp.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 10/31/22.
+//  Main App entrypoint
+//
+//  Created by @jdkula <jonathan@jdkula.dev> on 10/31/22.
 //
 
 import SwiftUI
 
 @main
 struct HLSStreamerApp: App {
-    @StateObject private var config: ConfigurationObserver = ConfigurationObserver()
+    @StateObject private var config: UserHLSConfigObserver = UserHLSConfigObserver()
     
-    @State private var isRecording = UIScreen.main.isCaptured
+    @State private var isStreaming = UIScreen.main.isCaptured
     
     var body: some Scene {
         WindowGroup {
-            ContentView(config: $config.config, isRecording: $isRecording) { _ in
-                
-            }.onAppear {
-                ConfigurationObserver.load { result in
+            ContentView(config: $config.config, isStreaming: $isStreaming).onAppear {
+                // Load config values
+                UserHLSConfiguration.load { result in
                     switch result {
                     case .failure(let error):
                         fatalError(error.localizedDescription)
@@ -27,8 +28,9 @@ struct HLSStreamerApp: App {
                     }
                 }
                 
+                // Update isStreaming when we start/stop streaming
                 NotificationCenter.default.addObserver(forName: UIScreen.capturedDidChangeNotification, object: nil, queue: nil) { _ in
-                    isRecording = UIScreen.main.isCaptured
+                    isStreaming = UIScreen.main.isCaptured
                 }
             }
         }

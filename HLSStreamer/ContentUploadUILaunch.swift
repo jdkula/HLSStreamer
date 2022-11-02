@@ -2,23 +2,24 @@
 //  ContentUploadUILaunch.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 11/1/22.
+//  Created by @jdkula <jonathan@jdkula.dev> on 11/1/22.
 //
 
 import Foundation
 import SwiftUI
 
+/// Allows ``BroadcastSetupViewController`` to be used in SwiftUI
 struct BroadcastSetupView: UIViewControllerRepresentable {
-    @Binding var isRecording: Bool
+    @Binding var isStreaming: Bool
     
     func makeUIViewController(context: Context) -> BroadcastSetupViewController {
         let vc = BroadcastSetupViewController()
-        vc.setRecording(isRecording);
+        vc.setStreaming(isStreaming);
         return vc;
     }
     
     func updateUIViewController(_ uiViewController: BroadcastSetupViewController, context: Context) {
-        uiViewController.setRecording(isRecording);
+        uiViewController.setStreaming(isStreaming);
     }
     
     typealias UIViewControllerType = BroadcastSetupViewController

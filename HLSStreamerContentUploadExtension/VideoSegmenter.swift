@@ -2,13 +2,19 @@
 //  VideoSegment.swift
 //  HLSStreamerContentUploadExtension
 //
-//  Created by Jonathan Kula on 10/31/22.
+//  https://developer.apple.com/videos/play/wwdc2020/10011/ was heavily referenced
+//  in the creation of this file.
+//
+//  Created by @jdkula <jonathan@jdkula.dev> on 10/31/22.
 //
 
 import Foundation
 import AVKit
 
-
+/**
+ * Provides an interface to automatically segment an input stream into
+ * fMP4 segments, which are later passed to the callback defined by ``VideoSegmenter.setOnSegment``
+ */
 class VideoSegmenter: NSObject, AVAssetWriterDelegate {
     private var outputWriter_: AVAssetWriter
     private var videoIn_: AVAssetWriterInput
@@ -46,10 +52,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         outputWriter_.add(audioIn_)
     }
     
-    func setOnSegment(onSegment: @escaping (Segment) -> Void) {
-        self.onSegment_ = onSegment
-    }
-    
+    // Called each time outputWriter_ produces a segment (set by ouputWriter_.delegate = self)
     @objc func assetWriter(_ writer: AVAssetWriter,
                      didOutputSegmentData segmentData: Data,
                      segmentType: AVAssetSegmentType,
@@ -76,15 +79,15 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
             timingReport: segmentReport?.trackReports.first(where: {$0.mediaType == .video})))
 
         
-        
         curSeq_ += 1
     }
     
-    private func noteChunk_(chunk: CMSampleBuffer) {
+    private func maybeStartSession_(chunk: CMSampleBuffer) {
         if !sessionStarted_ {
             self.outputWriter_.initialSegmentStartTime = CMSampleBufferGetPresentationTimeStamp(chunk)
             if !self.outputWriter_.startWriting() {
                 print("Failed?", self.outputWriter_.status, self.outputWriter_.error as Any)
+                fatalError("Failed to begin writing to the output file")
             }
             self.outputWriter_.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(chunk))
             sessionStarted_ = true
@@ -96,7 +99,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
             return
         }
         
-        noteChunk_(chunk: chunk)
+        maybeStartSession_(chunk: chunk)
         
         if videoIn_.isReadyForMoreMediaData {
             videoIn_.append(chunk)
@@ -108,7 +111,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
             return
         }
         
-        noteChunk_(chunk: chunk)
+        maybeStartSession_(chunk: chunk)
         
         if audioIn_.isReadyForMoreMediaData {
             audioIn_.append(chunk)
@@ -121,8 +124,10 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         }
         
         finished_ = true
-        outputWriter_.finishWriting {
-            print("Done")
-        }
+        outputWriter_.finishWriting {}
+    }
+    
+    func setOnSegment(onSegment: @escaping (Segment) -> Void) {
+        self.onSegment_ = onSegment
     }
 }

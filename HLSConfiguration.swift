@@ -1,115 +1,116 @@
 //
-//  Configuration.swift
+//  HLSConfiguration.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 11/1/22.
+//  Provides global configuration that's shared between
+//  the UI and the recording extension
+//
+//  Heavily referenced https://developer.apple.com/tutorials/app-dev-training/persisting-data
+//
+//  Created by @jdkula <jonathan@jdkula.dev> on 11/1/22.
 //
 
 import Foundation
 
-struct ConfigurationObj : Codable {
+/// Struct representing the user-configurable aspects of the application.
+struct UserHLSConfiguration : Codable {
     var port: String
     var segmentDuration: Double
     var videoBitrateMbps: Double
-    var fps: Int
     
     init() {
         self.port = "8888"
         self.segmentDuration = 1
         self.videoBitrateMbps = 6
-        self.fps = 60
     }
     
-    init(port: String, segmentDuration: Double, videoBitrateMbps: Double, fps: Int=60) {
+    init(port: String, segmentDuration: Double, videoBitrateMbps: Double) {
         self.port = port
         self.segmentDuration = segmentDuration
         self.videoBitrateMbps = videoBitrateMbps
-        self.fps = 60
     }
     
-    func withPort(_ port: String) -> ConfigurationObj {
-        return ConfigurationObj(port: port, segmentDuration: self.segmentDuration, videoBitrateMbps: self.videoBitrateMbps, fps: self.fps)
+    func withPort(_ port: String) -> UserHLSConfiguration {
+        return UserHLSConfiguration(port: port, segmentDuration: self.segmentDuration, videoBitrateMbps: self.videoBitrateMbps)
     }
     
-    func withSegmentDuration(_ segmentDuration: Double) -> ConfigurationObj {
-        return ConfigurationObj(port: self.port, segmentDuration: segmentDuration, videoBitrateMbps: self.videoBitrateMbps, fps: self.fps)
+    func withSegmentDuration(_ segmentDuration: Double) -> UserHLSConfiguration {
+        return UserHLSConfiguration(port: self.port, segmentDuration: segmentDuration, videoBitrateMbps: self.videoBitrateMbps)
     }
     
-    func withVideoBitrateMbps(_ videoBitrateMbps: Double) -> ConfigurationObj {
-        return ConfigurationObj(port: self.port, segmentDuration: self.segmentDuration, videoBitrateMbps: videoBitrateMbps, fps: self.fps)
-    }
-    
-    func withFps(_ fps: Int) -> ConfigurationObj {
-        return ConfigurationObj(port: self.port, segmentDuration: self.segmentDuration, videoBitrateMbps: self.videoBitrateMbps, fps: fps)
+    func withVideoBitrateMbps(_ videoBitrateMbps: Double) -> UserHLSConfiguration {
+        return UserHLSConfiguration(port: self.port, segmentDuration: self.segmentDuration, videoBitrateMbps: videoBitrateMbps)
     }
 }
 
-class ConfigurationObserver : ObservableObject {
-    @Published var config: ConfigurationObj = ConfigurationObj() {
+/// Observable wrapper around UserHLSConfiguration that auto-saves every time it is set.
+class UserHLSConfigObserver : ObservableObject {
+    @Published var config: UserHLSConfiguration = UserHLSConfiguration() {
         didSet {
-            ConfigurationObserver.save(config: config) {_ in }
+            UserHLSConfiguration.save(config: config)
         }
     }
-    
+}
+
+/**
+ * Provides functions to retrieve and persist the user-facing configuration
+ * (this facilitates communication between the app and the extension).
+ *
+ * Note that the failure mode of these functions are to return a default configuration,
+ * not throw errors.
+ */
+extension UserHLSConfiguration {
     private static func fileURL_() throws -> URL? {
-        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.dev.jdkula.HLSStreamer.config")?.appendingPathComponent("HLSStreamer.config")
+        FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: "group.dev.jdkula.HLSStreamer.config"
+        )?.appendingPathComponent("HLSStreamer.config")
     }
     
-    static func loadSync() throws -> ConfigurationObj {
+    static func loadSync() throws -> UserHLSConfiguration {
         guard let fileURL = try fileURL_() else {
-            return ConfigurationObj()
+            return UserHLSConfiguration()
         }
         guard let file = try? FileHandle(forReadingFrom: fileURL) else {
-            return ConfigurationObj()
+            return UserHLSConfiguration()
         }
-        let info = try JSONDecoder().decode(ConfigurationObj.self, from: file.availableData)
+        let info = try JSONDecoder().decode(UserHLSConfiguration.self, from: file.availableData)
         return info
     }
     
-    static func load(onComplete: @escaping ((Result<ConfigurationObj, Error>) -> Void)) {
+    static func load(onComplete: @escaping ((Result<UserHLSConfiguration, Error>) -> Void)) {
         DispatchQueue.global(qos: .background).async {
             do {
                 guard let fileURL = try fileURL_() else {
                     DispatchQueue.main.async {
-                        onComplete(.success(ConfigurationObj()))
+                        onComplete(.success(UserHLSConfiguration()))
                     }
                     return
                 }
                 guard let file = try? FileHandle(forReadingFrom: fileURL) else {
                     DispatchQueue.main.async {
-                        onComplete(.success(ConfigurationObj()))
+                        onComplete(.success(UserHLSConfiguration()))
                     }
                     return
                 }
-                let info = try JSONDecoder().decode(ConfigurationObj.self, from: file.availableData)
+                let info = try JSONDecoder().decode(UserHLSConfiguration.self, from: file.availableData)
                 DispatchQueue.main.async {
                     onComplete(.success(info))
                 }
-                                   
-                                   
             } catch {
                 onComplete(.failure(error))
             }
         }
     }
     
-    static func save(config: ConfigurationObj, onComplete: @escaping (Result<ConfigurationObj, Error>)->Void) {
+    static func save(config: UserHLSConfiguration) {
         do {
             let data = try JSONEncoder().encode(config)
             guard let fileURL = try fileURL_() else {
-                DispatchQueue.main.async {
-                    onComplete(.success(ConfigurationObj()))
-                }
                 return
             }
             try data.write(to: fileURL)
-            DispatchQueue.main.async {
-                onComplete(.success(config))
-            }
         } catch {
-            DispatchQueue.main.async {
-                onComplete(.failure(error))
-            }
+            // Ignore
         }
     }
 }
