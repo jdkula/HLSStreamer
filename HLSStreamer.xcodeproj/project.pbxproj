@@ -10,6 +10,8 @@
 		FB5DD4CC29120DF200B679B0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4CB29120DF200B679B0 /* Util.swift */; };
 		FB5DD4CE2912166B00B679B0 /* ContentUploadUILaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4CD2912166B00B679B0 /* ContentUploadUILaunch.swift */; };
 		FB5DD4CF2912167700B679B0 /* BroadcastSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */; };
+		FB5DD4D129122B7900B679B0 /* HLSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4D029122B7900B679B0 /* HLSConfiguration.swift */; };
+		FB5DD4D229122B7900B679B0 /* HLSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4D029122B7900B679B0 /* HLSConfiguration.swift */; };
 		FBA929E829112CA000785A41 /* HtmlComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929E729112CA000785A41 /* HtmlComponents.swift */; };
 		FBA929EA29112DB200785A41 /* M3u8Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929E929112DB200785A41 /* M3u8Collector.swift */; };
 		FBA929EC29112EAC00785A41 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA929EB29112EAC00785A41 /* Segment.swift */; };
@@ -57,8 +59,10 @@
 /* Begin PBXFileReference section */
 		FB2DD5D829113998007BC50D /* HLSStreamer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLSStreamer.entitlements; sourceTree = "<group>"; };
 		FB2DD5D929113C99007BC50D /* lil icon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lil icon.afdesign"; sourceTree = "<group>"; };
+		FB5987D22912455B009FC933 /* HLSStreamerContentUploadExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLSStreamerContentUploadExtension.entitlements; sourceTree = "<group>"; };
 		FB5DD4CB29120DF200B679B0 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		FB5DD4CD2912166B00B679B0 /* ContentUploadUILaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUploadUILaunch.swift; sourceTree = "<group>"; };
+		FB5DD4D029122B7900B679B0 /* HLSConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSConfiguration.swift; sourceTree = "<group>"; };
 		FBA929E729112CA000785A41 /* HtmlComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlComponents.swift; sourceTree = "<group>"; };
 		FBA929E929112DB200785A41 /* M3u8Collector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = M3u8Collector.swift; sourceTree = "<group>"; };
 		FBA929EB29112EAC00785A41 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 		FBCB5EB02910950E000C96A7 = {
 			isa = PBXGroup;
 			children = (
+				FB5DD4D029122B7900B679B0 /* HLSConfiguration.swift */,
 				FB2DD5D929113C99007BC50D /* lil icon.afdesign */,
 				FBCB5EBB2910950E000C96A7 /* HLSStreamer */,
 				FBCB5EF02910BA3C000C96A7 /* HLSStreamerContentUploadExtension */,
@@ -164,6 +169,7 @@
 		FBCB5EF02910BA3C000C96A7 /* HLSStreamerContentUploadExtension */ = {
 			isa = PBXGroup;
 			children = (
+				FB5987D22912455B009FC933 /* HLSStreamerContentUploadExtension.entitlements */,
 				FBCB5F0C2910BD1F000C96A7 /* Info.plist */,
 				FBCB5ECF2910B485000C96A7 /* HLSServer.swift */,
 				FBCB5EF12910BA3C000C96A7 /* SampleHandler.swift */,
@@ -289,6 +295,7 @@
 				FBCB5EBD2910950E000C96A7 /* HLSStreamerApp.swift in Sources */,
 				FB5DD4CF2912167700B679B0 /* BroadcastSetupViewController.swift in Sources */,
 				FB5DD4CC29120DF200B679B0 /* Util.swift in Sources */,
+				FB5DD4D129122B7900B679B0 /* HLSConfiguration.swift in Sources */,
 				FB5DD4CE2912166B00B679B0 /* ContentUploadUILaunch.swift in Sources */,
 				FBCB5ECC291096C9000C96A7 /* ScreenRecorder.swift in Sources */,
 			);
@@ -301,6 +308,7 @@
 				FBCB5F0B2910BB9B000C96A7 /* HLSServer.swift in Sources */,
 				FBCB5EF22910BA3C000C96A7 /* SampleHandler.swift in Sources */,
 				FBE708B12911133D00A4FA3F /* Configuration.swift in Sources */,
+				FB5DD4D229122B7900B679B0 /* HLSConfiguration.swift in Sources */,
 				FBA929EC29112EAC00785A41 /* Segment.swift in Sources */,
 				FBA929E829112CA000785A41 /* HtmlComponents.swift in Sources */,
 				FBA929EA29112DB200785A41 /* M3u8Collector.swift in Sources */,
@@ -508,6 +516,7 @@
 		FBCB5F092910BA3C000C96A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = HLSStreamerContentUploadExtension/HLSStreamerContentUploadExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -535,6 +544,7 @@
 		FBCB5F0A2910BA3C000C96A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = HLSStreamerContentUploadExtension/HLSStreamerContentUploadExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

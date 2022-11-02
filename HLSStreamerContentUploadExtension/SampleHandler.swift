@@ -12,6 +12,7 @@ class SampleHandler: RPBroadcastSampleHandler {
     private var targetDir_: URL
     
     private var config_: FMP4Configuration
+    private var savedConfig_: ConfigurationObj
     
     private var server_: HLSServer?
     private var seg_: VideoSegmenter
@@ -25,9 +26,16 @@ class SampleHandler: RPBroadcastSampleHandler {
             fatalError("Target dir failed...")
         }
         
-        self.config_ = FMP4Configuration()
-        config_.videoCompressionSettings["AVVideoWidthKey"] = UIScreen.main.bounds.size.height
-        config_.videoCompressionSettings["AVVideoHeightKey"] = UIScreen.main.bounds.size.width
+        savedConfig_ = (try? ConfigurationObserver.loadSync()) ?? ConfigurationObj();
+        
+        print("Got config", savedConfig_)
+        
+        self.config_ = FMP4Configuration(
+            segmentDuration: savedConfig_.segmentDuration,
+            videoBitrateMbps: savedConfig_.videoBitrateMbps,
+            fps: savedConfig_.fps
+        )
+        
 
         self.seg_ = VideoSegmenter(outputDir: self.targetDir_, config: config_)
         self.m3u8_ = M3u8Collector(folderPrefix: "video")
@@ -52,7 +60,7 @@ class SampleHandler: RPBroadcastSampleHandler {
     override func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?) {
         // User has requested to start the broadcast. Setup info from the UI extension can be supplied but optional.
         do {
-            server_ = try HLSServer(dir: self.targetDir_, m3u8: m3u8_)
+            server_ = try HLSServer(dir: self.targetDir_, m3u8: m3u8_, port: Int(savedConfig_.port)!)
         } catch {
             print("Server failed...")
         }
@@ -93,6 +101,28 @@ class SampleHandler: RPBroadcastSampleHandler {
         switch sampleBufferType {
         case RPSampleBufferType.video:
             // Handle video sample buffer
+            // https://stackoverflow.com/questions/25462091/get-device-current-orientation-app-extension
+            if let orientationAttachment = CMGetAttachment(sampleBuffer, key: RPVideoSampleOrientationKey as CFString, attachmentModeOut: nil) as? NSNumber
+            {
+              let orientation = CGImagePropertyOrientation(rawValue: orientationAttachment.uint32Value)
+                switch (orientation) {
+                case .down:
+                    server_?.orientation = "down"
+                    break
+                case .up:
+                    server_?.orientation = "up"
+                    break
+                case .left:
+                    server_?.orientation = "left"
+                    break
+                case .right:
+                    server_?.orientation = "right"
+                    break
+                default:
+                    server_?.orientation = "unknown"
+                    break
+                }
+            }
             self.seg_.processVideo(chunk: sampleBuffer)
             break
         case RPSampleBufferType.audioApp:

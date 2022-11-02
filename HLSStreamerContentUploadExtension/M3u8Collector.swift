@@ -30,9 +30,9 @@ class M3u8Collector {
         assert(m3u8_ != "")
                 
         if let previousSegmentInfo = self.lastSegment_ {
-            let segmentDuration = segment.timingReport!.earliestPresentationTimeStamp - previousSegmentInfo.timingReport!.earliestPresentationTimeStamp
-            if segmentDuration.seconds > 0 {
-                m3u8_ += "#EXTINF:\(String(format: "%1.5f", segmentDuration.seconds)),\t\n\(folderPrefix_)/\(segment.index).m4s\n"
+            let segmentDuration = segment.timingReport!.earliestPresentationTimeStamp.seconds - previousSegmentInfo.timingReport!.earliestPresentationTimeStamp.seconds
+            if segmentDuration > 0 {
+                m3u8_ += "#EXTINF:\(String(format: "%1.5f", segmentDuration)),\t\n\(folderPrefix_)/\(segment.index).m4s\n"
             }
         }
         

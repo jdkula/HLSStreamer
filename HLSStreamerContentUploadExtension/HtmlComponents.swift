@@ -5,6 +5,59 @@
 //  Created by Jonathan Kula on 11/1/22.
 //
 
+let kServiceWorkerJs = """
+// <== Globals ==>
+// Application data storage
+const appCache = caches.open('hls-streamer-page');
+
+// <== Helpers ==>
+/** Retrieves and gives back cached data, if it exists. */
+async function ahqCache(request) {
+    const appCacheResponse = await (await appCache).match(request.url);
+    if (appCacheResponse) {
+        cacheUrl(await appCache, request.url);
+        return appCacheResponse;
+    }
+    return await fetch(request);
+}
+
+/** Caches the given URL, automatically testing and caching for bare urls as well. */
+async function cacheUrl(cache, url) {
+    const bareUrl = url.replace(/\\.html$/, '');
+
+    try {
+        const response = await fetch(url);
+        if (response.status === 200) {
+            // If the URL ends in HTML, also save this response for the bare url.
+            if (url.endsWith('.html')) {
+                cache.put(bareUrl, response.clone());
+            }
+            cache.put(url, response);
+
+            // If we didn't find this page.html, try accessing the bare url.
+        } else if (response.status === 404 && url.endsWith('.html')) {
+            const bareResponse = await fetch(bareUrl);
+            if (bareResponse.status === 200) {
+                cache.put(bareUrl, bareResponse.clone());
+                cache.put(url, bareResponse);
+            }
+        }
+    } catch (e) {
+        console.warn(e);
+    }
+}
+
+
+// <== Event Listeners ==>
+
+/** Respond with cached data if possible, using a SWR "cache-and-network" pattern */
+self.addEventListener('fetch', (event) => {
+    if (event.request.method !== 'GET') return;
+    if (new URL(event.request.url).pathname !== '/') return;
+
+    event.respondWith(hlssCache(event.request));
+});
+"""
 
 let kVideoJs = """
 /**
