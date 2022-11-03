@@ -2,12 +2,13 @@
 //  SettingsView.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 11/2/22.
+//  Created by @jdkula <jonathan@jdkula.dev> on 11/2/22.
 //
 
 import SwiftUI
 import Combine
 
+/// The portion of the home page that allows the user to configure the settings used by the stream
 struct SettingsView: View {
     @Binding var isStreaming: Bool
     @Binding var config: UserHLSConfiguration

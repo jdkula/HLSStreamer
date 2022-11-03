@@ -15,7 +15,6 @@ import VideoToolbox
 class SampleHandler: RPBroadcastSampleHandler {
     private var targetDir_: URL
     
-    private var streamConfig_: FMP4Configuration
     private var userConfig_: UserHLSConfiguration
     
     private var server_: HLSServer?
@@ -25,7 +24,7 @@ class SampleHandler: RPBroadcastSampleHandler {
     
     private func onSegment_(seg: Segment) {
         if seg.isInitializationSegment {
-            m3u8_.initM3u8(config: streamConfig_, segment: seg)
+            m3u8_.initM3u8(config: userConfig_, segment: seg)
         } else {
             m3u8_.addSegment(segment: seg)
         }
@@ -82,14 +81,8 @@ class SampleHandler: RPBroadcastSampleHandler {
         
         // Try to load stream configuration options from disk
         userConfig_ = (try? UserHLSConfiguration.loadSync()) ?? UserHLSConfiguration();
-        
-        streamConfig_ = FMP4Configuration(
-            segmentDuration: userConfig_.segmentDuration,
-            videoBitrateMbps: userConfig_.videoBitrateMbps
-        )
-        
 
-        seg_ = VideoSegmenter(outputDir: self.targetDir_, config: streamConfig_)
+        seg_ = VideoSegmenter(outputDir: self.targetDir_, config: userConfig_)
         m3u8_ = M3u8Collector(folderPrefix: "video")
         
         super.init()

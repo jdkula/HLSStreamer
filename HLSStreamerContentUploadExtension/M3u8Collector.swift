@@ -76,7 +76,7 @@ class M3u8Collector {
     }
     
     /// Initializes a new M3u8 playlist with the given fMP4 configuration and header segment.
-    func initM3u8(config: FMP4Configuration, segment: Segment) {
+    func initM3u8(config: UserHLSConfiguration, segment: Segment) {
         assert(segment.isInitializationSegment)
         
         // 60 seconds worth of segments, or a minimum of 10. This is pretty arbitrary, could be configurable later.

@@ -11,8 +11,6 @@ import SwiftUI
 import ReplayKit
 import Combine
 
-
-
 struct ContentView: View {
     @Binding var config: UserHLSConfiguration
     @Binding var isStreaming: Bool

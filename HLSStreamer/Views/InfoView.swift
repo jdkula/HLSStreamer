@@ -2,11 +2,12 @@
 //  InfoView.swift
 //  HLSStreamer
 //
-//  Created by Jonathan Kula on 11/2/22.
+//  Created by @jdkula <jonathan@jdkula.dev> on 11/2/22.
 //
 
 import SwiftUI
 
+/// The portion of the home page that displays where the user can access the stream
 struct InfoView: View {
     @Binding var isStreaming: Bool
     @Binding var config: UserHLSConfiguration
