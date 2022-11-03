@@ -14,14 +14,16 @@ import Foundation
 
 /// Struct representing the user-configurable aspects of the application.
 struct UserHLSConfiguration : Codable {
+    static let kLossless = 10.5
+    
     var port: String
     var segmentDuration: Double
     var videoBitrateMbps: Double
     
     init() {
         self.port = "8888"
-        self.segmentDuration = 6
-        self.videoBitrateMbps = 6
+        self.segmentDuration = 4
+        self.videoBitrateMbps = UserHLSConfiguration.kLossless
     }
     
     init(port: String, segmentDuration: Double, videoBitrateMbps: Double) {

@@ -53,9 +53,9 @@ struct SettingsView: View {
             }
             Spacer(minLength: 40)
 
-            Slider(value: $config.segmentDuration, in: 0.5...10, step: 0.5).frame(maxWidth: 250)
+            Slider(value: $config.segmentDuration, in: 1...10, step: 1).frame(maxWidth: 250)
             
-            Text(String(format: "%.1f", config.segmentDuration))
+            Text(String(format: "%.0f", config.segmentDuration) + " s")
                 .frame(width: 80, alignment: .trailing)
         }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)
         
@@ -63,14 +63,14 @@ struct SettingsView: View {
         HStack {
             VStack(alignment: .leading) {
                 Label("Video Bitrate (Mbps)", systemImage: "calendar.day.timeline.left")
-                Text("(Configures the average bitrate to request of the output video)")
+                Text("(Configures the average bitrate to request of the output video. \"Lossless\" turns off video compression.)")
                     .foregroundColor(Color.gray)
                     .font(.system(size: 14))
             }
 
             Spacer(minLength: 40)
-            Slider(value: $config.videoBitrateMbps, in: 0.5...10, step: 0.5).frame(maxWidth: 250)
-            Text(String(format: "%.1f", config.videoBitrateMbps))
+            Slider(value: $config.videoBitrateMbps, in: 0.5...10.5, step: 0.5).frame(maxWidth: 250)
+            Text(config.videoBitrateMbps == UserHLSConfiguration.kLossless ? "Lossless" : (String(format: "%.1f", config.videoBitrateMbps) + " Mbps"))
                 .frame(width: 80, alignment: .trailing)
             
         }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)

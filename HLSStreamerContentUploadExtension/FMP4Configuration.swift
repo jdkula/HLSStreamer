@@ -38,12 +38,14 @@ struct FMP4Configuration {
             // For a production use case, modify this as necessary to match the source content.
             AVVideoWidthKey: width,
             AVVideoHeightKey: height,
-            AVVideoCompressionPropertiesKey: [
+        ]
+        if (videoBitrateMbps != UserHLSConfiguration.kLossless) {
+            self.videoCompressionSettings[AVVideoCompressionPropertiesKey] = [
                 kVTCompressionPropertyKey_AverageBitRate: videoBitrateMbps * 1_000_000,
                 kVTCompressionPropertyKey_ProfileLevel: kVTProfileLevel_H264_Main_5_2,
                 kVTCompressionPropertyKey_Quality: 1,
             ]
-        ]
+        }
         self.minimumAllowableSourceFrameDuration = CMTime(value: 1, timescale: CMTimeScale(fps))
     }
 }
