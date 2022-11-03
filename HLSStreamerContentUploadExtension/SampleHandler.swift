@@ -46,6 +46,11 @@ class SampleHandler: RPBroadcastSampleHandler {
     }
     
     private func updateOrientation_(chunk: CMSampleBuffer) {
+        if userConfig_.rotation != "auto" {
+            server_?.orientation = userConfig_.rotation
+            return
+        }
+        
         if let orientationAttachment = CMGetAttachment(chunk, key: RPVideoSampleOrientationKey as CFString, attachmentModeOut: nil) as? NSNumber
         {
           let orientation = CGImagePropertyOrientation(rawValue: orientationAttachment.uint32Value)

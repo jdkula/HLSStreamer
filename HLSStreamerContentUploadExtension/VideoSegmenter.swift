@@ -78,6 +78,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         audioIn_ = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: config.audioCompressionSettings)
         
         outputWriter_!.outputFileTypeProfile = .mpeg4AppleHLS
+        outputWriter_!.initialSegmentStartTime = CMSampleBufferGetPresentationTimeStamp(chunk)
         outputWriter_!.preferredOutputSegmentInterval = CMTime(seconds: Double(config.segmentDuration), preferredTimescale: 1)
         outputWriter_!.delegate = self
         
@@ -97,7 +98,6 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
                     width: Int(formatDescription.dimensions.width),
                     height: Int(formatDescription.dimensions.height))
                 initAVWriters_(chunk: chunk, config: config)
-                self.outputWriter_!.initialSegmentStartTime = CMSampleBufferGetPresentationTimeStamp(chunk)
                 if !self.outputWriter_!.startWriting() {
                     print("Failed?", self.outputWriter_!.status, self.outputWriter_!.error as Any)
                     fatalError("Failed to begin writing to the output file")

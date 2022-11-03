@@ -21,8 +21,8 @@ struct HLSStreamerApp: App {
                 // Load config values
                 UserHLSConfiguration.load { result in
                     switch result {
-                    case .failure(let error):
-                        fatalError(error.localizedDescription)
+                    case .failure:
+                        config.config = UserHLSConfiguration()
                     case .success(let cfg):
                         config.config = cfg;
                     }

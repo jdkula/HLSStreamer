@@ -77,6 +77,26 @@ struct SettingsView: View {
         }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)
         
         HStack {
+            VStack(alignment: .leading) {
+                Label("Video Rotation", systemImage: "lock.rotation")
+                Text("(Restart the stream for changes to take effect.)")
+                    .foregroundColor(Color.gray)
+                    .font(.system(size: 14))
+            }
+
+            Spacer(minLength: 40)
+            Picker("", selection: $config.rotation) {
+                Text("Auto").tag("auto")
+                Text("0°").tag("up")
+                Text("90°").tag("left")
+                Text("180°").tag("down")
+                Text("270°").tag("right")
+            }.pickerStyle(.segmented).frame(maxWidth: 400)
+            
+        }.padding().background(Color(UIColor.secondarySystemBackground)).cornerRadius(8)
+
+        
+        HStack {
             Label("Reset Values", systemImage: "arrow.clockwise")
             Spacer()
             Button("Tap to Reset") {

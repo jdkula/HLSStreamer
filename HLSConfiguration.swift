@@ -19,29 +19,32 @@ struct UserHLSConfiguration : Codable {
     var port: String
     var segmentDuration: Double
     var videoBitrateMbps: Double
+    var rotation: String
     
     init() {
         self.port = "8888"
-        self.segmentDuration = 4
+        self.segmentDuration = 2
         self.videoBitrateMbps = UserHLSConfiguration.kLossless
+        self.rotation = "auto"
     }
     
-    init(port: String, segmentDuration: Double, videoBitrateMbps: Double) {
+    init(port: String, segmentDuration: Double, videoBitrateMbps: Double, rotation: String) {
         self.port = port
         self.segmentDuration = segmentDuration
         self.videoBitrateMbps = videoBitrateMbps
+        self.rotation = rotation
     }
     
     func withPort(_ port: String) -> UserHLSConfiguration {
-        return UserHLSConfiguration(port: port, segmentDuration: self.segmentDuration, videoBitrateMbps: self.videoBitrateMbps)
+        return UserHLSConfiguration(port: port, segmentDuration: self.segmentDuration, videoBitrateMbps: self.videoBitrateMbps, rotation: self.rotation)
     }
     
     func withSegmentDuration(_ segmentDuration: Double) -> UserHLSConfiguration {
-        return UserHLSConfiguration(port: self.port, segmentDuration: segmentDuration, videoBitrateMbps: self.videoBitrateMbps)
+        return UserHLSConfiguration(port: self.port, segmentDuration: segmentDuration, videoBitrateMbps: self.videoBitrateMbps, rotation: self.rotation)
     }
     
     func withVideoBitrateMbps(_ videoBitrateMbps: Double) -> UserHLSConfiguration {
-        return UserHLSConfiguration(port: self.port, segmentDuration: self.segmentDuration, videoBitrateMbps: videoBitrateMbps)
+        return UserHLSConfiguration(port: self.port, segmentDuration: self.segmentDuration, videoBitrateMbps: videoBitrateMbps, rotation: self.rotation)
     }
 }
 
