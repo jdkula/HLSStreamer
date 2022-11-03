@@ -29,3 +29,7 @@ They are also cleared when you stop streaming.
 Generates an HLS stream in fMP4 fragments (`header.mp4` and `\(sequenceNumber).m4s`) that are served from the
 iDevice in a sliding window lasting approx. 60 seconds. System audio and video are captured, but the user
 microphone is not (even if that option is selected while attempting to broadcast to `HLSStreamer`.
+
+## Libraries
+
+The HTTP server is provided by [Swifter](https://github.com/httpswift/swifter)
