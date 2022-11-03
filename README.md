@@ -30,6 +30,18 @@ Generates an HLS stream in fMP4 fragments (`header.mp4` and `\(sequenceNumber).m
 iDevice in a sliding window lasting approx. 60 seconds. System audio and video are captured, but the user
 microphone is not (even if that option is selected while attempting to broadcast to `HLSStreamer`.
 
-## Libraries
+## Demo
+
+Recorded on Chrome, streaming from iPad (stream delay of approx. 5 seconds)
+
+
+https://user-images.githubusercontent.com/4166625/199675929-ec517b69-efc2-45b9-89e0-a85d95f286e7.mp4
+
+
+<img alt="Interface screenshot" width="400" src="https://user-images.githubusercontent.com/4166625/199672372-7b14371b-1423-406a-a155-02ff3e72fe76.PNG">
+<img alt="Interface screenshot while streaming" width="400" src="https://user-images.githubusercontent.com/4166625/199672383-c2fca114-bb77-45de-be01-d4a36a0c5514.PNG">
+
+
+## Attributions
 
 The HTTP server is provided by [Swifter](https://github.com/httpswift/swifter)
