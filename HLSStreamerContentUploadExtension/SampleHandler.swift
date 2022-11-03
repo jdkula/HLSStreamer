@@ -22,6 +22,7 @@ class SampleHandler: RPBroadcastSampleHandler {
     private var m3u8_: M3u8Collector
     
     
+    
     private func onSegment_(seg: Segment) {
         if seg.isInitializationSegment {
             m3u8_.initM3u8(config: userConfig_, segment: seg)

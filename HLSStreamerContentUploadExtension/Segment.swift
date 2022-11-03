@@ -28,5 +28,5 @@ struct Segment {
     let report: AVAssetSegmentReport?
     
     /// If this segment encodes video information, we also keep track of the track report (this allows us to figure out timing details later).
-    var timingReport: AVAssetSegmentTrackReport?
+    var trackReports: [AVAssetSegmentTrackReport]?
 }

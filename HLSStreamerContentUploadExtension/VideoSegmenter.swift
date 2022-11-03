@@ -59,12 +59,13 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         
         let url = outputDir_.appending(component: isInitializationSegment ? "header.mp4" : "\(curSeq_).m4s")
         try! segmentData.write(to: url)
+        
         onSegment_?(Segment(
             url: url,
             index: curSeq_,
             isInitializationSegment: isInitializationSegment,
             report: segmentReport,
-            timingReport: segmentReport?.trackReports.first(where: {$0.mediaType == .video})))
+            trackReports: segmentReport?.trackReports))
 
         
         curSeq_ += 1

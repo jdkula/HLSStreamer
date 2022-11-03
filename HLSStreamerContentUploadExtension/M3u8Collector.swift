@@ -21,7 +21,7 @@ class M3u8Collector {
     private var headerSegment_: Segment? = nil
     private var segments_: [Segment] = []
     private var segmentDuration_: Double = 0.0
-    
+     
     private var seqNo_: Int = 1;
     private var segmentsToKeep_: Int = 0
     
@@ -40,20 +40,15 @@ class M3u8Collector {
     }
     
     private func getContent_() -> String {
-        var lastSegment: Segment?
-        
         var m3u8 = ""
         
         for segment in segments_ {
-            if let previousSegmentInfo = lastSegment {
-                let segmentDuration = segment.timingReport!.earliestPresentationTimeStamp.seconds - previousSegmentInfo.timingReport!.earliestPresentationTimeStamp.seconds
-                
-                // Sometimes we can get wildly negative segment durations; if this happens, we'll just skip the affected segment.
+            if let segmentDuration = segment.trackReports?.max(by: {a, b in a.duration.seconds < b.duration.seconds })?.duration.seconds {
+                // Sometimes we can get length-zero durations
                 if segmentDuration > 0 {
                     m3u8 += "#EXTINF:\(String(format: "%1.5f", segmentDuration)),\t\n\(folderPrefix_)/\(segment.index).m4s\n"
                 }
             }
-            lastSegment = segment
         }
         
         return m3u8
