@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FB10812E29126ADC00880643 /* HtmlComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB10812D29126ADC00880643 /* HtmlComponents.swift */; };
+		FB32BD5529133D890025C098 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32BD5429133D890025C098 /* InfoView.swift */; };
+		FB32BD5729133D9A0025C098 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB32BD5629133D9A0025C098 /* SettingsView.swift */; };
 		FB5DD4CC29120DF200B679B0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4CB29120DF200B679B0 /* Util.swift */; };
 		FB5DD4CE2912166B00B679B0 /* ContentUploadUILaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5DD4CD2912166B00B679B0 /* ContentUploadUILaunch.swift */; };
 		FB5DD4CF2912167700B679B0 /* BroadcastSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB5EFC2910BA3C000C96A7 /* BroadcastSetupViewController.swift */; };
@@ -60,6 +62,8 @@
 		FB10812D29126ADC00880643 /* HtmlComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlComponents.swift; sourceTree = "<group>"; };
 		FB2DD5D829113998007BC50D /* HLSStreamer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLSStreamer.entitlements; sourceTree = "<group>"; };
 		FB2DD5D929113C99007BC50D /* Icon.draft1.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = Icon.draft1.afdesign; sourceTree = "<group>"; };
+		FB32BD5429133D890025C098 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		FB32BD5629133D9A0025C098 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FB5987D22912455B009FC933 /* HLSStreamerContentUploadExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLSStreamerContentUploadExtension.entitlements; sourceTree = "<group>"; };
 		FB5DD4CB29120DF200B679B0 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		FB5DD4CD2912166B00B679B0 /* ContentUploadUILaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUploadUILaunch.swift; sourceTree = "<group>"; };
@@ -109,6 +113,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB32BD5329133D710025C098 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FBCB5EBE2910950E000C96A7 /* ContentView.swift */,
+				FB32BD5429133D890025C098 /* InfoView.swift */,
+				FB32BD5629133D9A0025C098 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FBCB5EB02910950E000C96A7 = {
 			isa = PBXGroup;
 			children = (
@@ -133,10 +147,10 @@
 		FBCB5EBB2910950E000C96A7 /* HLSStreamer */ = {
 			isa = PBXGroup;
 			children = (
+				FB32BD5329133D710025C098 /* Views */,
 				FBCB5ED42910B80C000C96A7 /* Info.plist */,
 				FB2DD5D829113998007BC50D /* HLSStreamer.entitlements */,
 				FBCB5EBC2910950E000C96A7 /* HLSStreamerApp.swift */,
-				FBCB5EBE2910950E000C96A7 /* ContentView.swift */,
 				FBCB5EC02910950E000C96A7 /* Assets.xcassets */,
 				FBCB5EC22910950E000C96A7 /* Preview Content */,
 				FB5DD4CB29120DF200B679B0 /* Util.swift */,
@@ -292,11 +306,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBCB5EBF2910950E000C96A7 /* ContentView.swift in Sources */,
+				FB32BD5729133D9A0025C098 /* SettingsView.swift in Sources */,
 				FBCB5EBD2910950E000C96A7 /* HLSStreamerApp.swift in Sources */,
 				FB5DD4CF2912167700B679B0 /* BroadcastSetupViewController.swift in Sources */,
 				FB5DD4CC29120DF200B679B0 /* Util.swift in Sources */,
 				FB5DD4D129122B7900B679B0 /* HLSConfiguration.swift in Sources */,
 				FB5DD4CE2912166B00B679B0 /* ContentUploadUILaunch.swift in Sources */,
+				FB32BD5529133D890025C098 /* InfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

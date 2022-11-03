@@ -39,3 +39,22 @@ func getIPAddresses() -> [String] {
     }
     return addresses
 }
+
+func getIPInformation_(isStreaming: Bool) -> [String]? {
+    if !isStreaming {
+        return nil
+    }
+    
+    let addresses = getIPAddresses()
+    let ipv4 = addresses.filter {s in
+        s.contains(".") && !s.starts(with: "169.")
+    }
+    
+    let ipv6 = getIPAddresses().filter {s in
+        s.contains(":") && !s.starts(with: "fe80::")
+    }
+    
+    let fallback = "<IPAD IP ADDRESS>"
+    
+    return ipv4.isEmpty ? (ipv6.isEmpty ? [fallback] : ipv6) : ipv4
+}
