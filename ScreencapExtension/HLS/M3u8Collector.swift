@@ -8,6 +8,7 @@
 
 import Foundation
 import AVKit
+import Combine
 
 /**
  * Provides the ongoing generation of a single M3U8 playlist,
@@ -17,7 +18,26 @@ import AVKit
  * and will delete it when it is no longer needed. The segments are assumed to
  * exist already by the time they get here.
  */
-class M3u8Collector {
+class M3u8Collector : SegmentDataReceiver {
+    private var subscription_: Subscription?
+    func receive(subscription: Subscription) {
+        subscription_ = subscription
+        subscription.request(.unlimited)
+    }
+    
+    func receive(_ input: Segment) -> Subscribers.Demand {
+        if input.isInitializationSegment {
+            initM3u8(segment: input)
+        } else {
+            addSegment(segment: input)
+        }
+        return .unlimited
+    }
+    
+    func receive(completion: Subscribers.Completion<Error>) {
+        subscription_ = nil
+    }
+    
     private var headerSegment_: Segment? = nil
     private var segments_: [Segment] = []
     private var segmentDuration_: Double = 0.0
@@ -27,8 +47,8 @@ class M3u8Collector {
     
     private let folderPrefix_: String
     
-    init(folderPrefix: String) {
-        folderPrefix_ = folderPrefix;
+    init(urlPrefix: String) {
+        folderPrefix_ = urlPrefix;
     }
     
     private func getHeader_() -> String {
@@ -71,8 +91,9 @@ class M3u8Collector {
     }
     
     /// Initializes a new M3u8 playlist with the given fMP4 configuration and header segment.
-    func initM3u8(config: UserStreamConfiguration, segment: Segment) {
+    func initM3u8(segment: Segment) {
         assert(segment.isInitializationSegment)
+        let config = ScreencapContext.instance().getUserConfig()
         
         // 60 seconds worth of segments, or a minimum of 10. This is pretty arbitrary, could be configurable later.
         segmentsToKeep_ = max(10, Int(60 / config.segmentDuration))

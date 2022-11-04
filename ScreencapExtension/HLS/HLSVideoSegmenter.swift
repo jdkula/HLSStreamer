@@ -10,12 +10,54 @@
 
 import Foundation
 import AVKit
+import Combine
 
 /**
  * Provides an interface to automatically segment an input stream into
  * fMP4 segments, which are later passed to the callback defined by ``VideoSegmenter.setOnSegment``
  */
-class VideoSegmenter: NSObject, AVAssetWriterDelegate {
+class HLSVideoSegmenter: NSObject, AVAssetWriterDelegate, ScreencapDataReceiver, Subject {
+    private let subject_ : PassthroughSubject<Segment, Error>
+    func send(_ value: Segment) {
+        subject_.send(value)
+    }
+    func receive<S>(subscriber: S) where S : Subscriber, Error == S.Failure, Segment == S.Input {
+        subject_.receive(subscriber: subscriber)
+    }
+    func send(completion: Subscribers.Completion<Error>) {
+        subject_.send(completion: completion)
+    }
+    
+    func send(subscription: Subscription) {
+        subject_.send(subscription: subscription)
+    }
+    typealias Output = Segment
+    typealias Failure = Error
+    
+    private var subscription_: Subscription?
+    func receive(subscription: Subscription) {
+        subscription_ = subscription
+        subscription.request(.unlimited)
+    }
+    
+    func receive(_ input: ScreencapSampleBuffer) -> Subscribers.Demand {
+        switch (input) {
+        case .video(let buf):
+            processVideo(chunk: buf)
+            break
+        case .deviceAudio(let buf):
+            processAudio(chunk: buf)
+            break
+        default:
+            break
+        }
+        return .unlimited
+    }
+    
+    func receive(completion: Subscribers.Completion<Error>) {
+        // Do nothing
+    }
+    
     private var config_: UserStreamConfiguration
     
     private var outputWriter_: AVAssetWriter?
@@ -28,14 +70,13 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
     private var curSeq_ = 0
     
     private var sessionStarted_: Bool
-    
-    private var onSegment_: ((Segment) -> Void)?
-    
+        
     init(outputDir: URL, config: UserStreamConfiguration) {
         outputDir_ = outputDir
         sessionStarted_ = false
         finished_ = false
         config_ = config
+        subject_ = PassthroughSubject()
 
         super.init()
     }
@@ -53,20 +94,19 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         case .separable:
             isInitializationSegment = false
         @unknown default:
-            print("Skipping segment with unrecognized type \(segmentType)")
+            Swift.print("Skipping segment with unrecognized type \(segmentType)")
             return
         }
         
         let url = outputDir_.appending(component: isInitializationSegment ? "header.mp4" : "\(curSeq_).m4s")
         try! segmentData.write(to: url)
         
-        onSegment_?(Segment(
+        send(Segment(
             url: url,
             index: curSeq_,
             isInitializationSegment: isInitializationSegment,
             report: segmentReport,
             trackReports: segmentReport?.trackReports))
-
         
         curSeq_ += 1
     }
@@ -99,7 +139,6 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
                     height: Int(formatDescription.dimensions.height))
                 initAVWriters_(chunk: chunk, config: config)
                 if !self.outputWriter_!.startWriting() {
-                    print("Failed?", self.outputWriter_!.status, self.outputWriter_!.error as Any)
                     fatalError("Failed to begin writing to the output file")
                 }
                 self.outputWriter_!.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(chunk))
@@ -108,7 +147,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         }
     }
 
-    func processVideo(chunk: CMSampleBuffer) {
+    private func processVideo(chunk: CMSampleBuffer) {
         if finished_ {
             return
         }
@@ -120,7 +159,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         }
     }
     
-    func processAudio(chunk: CMSampleBuffer) {
+    private func processAudio(chunk: CMSampleBuffer) {
         if finished_ {
             return
         }
@@ -140,8 +179,8 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
         finished_ = true
         outputWriter_?.finishWriting {}
     }
+}
+
+protocol SegmentDataReceiver : Subscriber<Segment, Error> {
     
-    func setOnSegment(onSegment: @escaping (Segment) -> Void) {
-        self.onSegment_ = onSegment
-    }
 }

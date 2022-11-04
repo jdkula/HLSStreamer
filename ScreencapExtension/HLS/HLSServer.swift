@@ -16,38 +16,26 @@ import Foundation
 import Swifter
 import AVKit
 
-class HLSServer {
-    private let server_: HttpServer
-    
+class HLSServer : WebserverConfigurator {
     private let m3u8_: M3u8Collector
+    private let dir_: URL?
     
-    var orientation: String = "left"
-    
-    init(dir: URL?, m3u8: M3u8Collector, port: Int = 8888) throws {
+    init(dir: URL?, m3u8: M3u8Collector) {
         self.m3u8_ = m3u8
-        self.server_ = HttpServer()
-        server_["/"] = { request in
+        self.dir_ = dir;
+    }
+    
+    func prepareWebserver(webserver: Swifter.HttpServer) {
+        webserver["/"] = { request in
             return HttpResponse.ok(.html(kIndexHtml))
         }
         
-        server_["/index.m3u8"] = { request in
+        webserver["/index.m3u8"] = { request in
             return HttpResponse.ok(.text(self.m3u8_.getM3u8()))
         }
         
-        server_["/orientation"] = { request in
-            return HttpResponse.ok(.text(self.orientation))
+        if dir_ != nil {
+            webserver["/video/:path"] = shareFilesFromDirectory(dir_!.path())
         }
-        
-        if (dir != nil) {
-            server_["/video/:path"] = shareFilesFromDirectory(dir!.path())
-        }
-        
-        try server_.start(in_port_t(port))
-        
-        print("Server started?")
-    }
-    
-    func stop() {
-        server_.stop()
     }
 }

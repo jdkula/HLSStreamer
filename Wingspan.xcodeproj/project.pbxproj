@@ -21,7 +21,7 @@
 		FB8BE1702915104D002534C7 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1662915104D002534C7 /* Segment.swift */; };
 		FB8BE1712915104D002534C7 /* HLSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1672915104D002534C7 /* HLSServer.swift */; };
 		FB8BE1722915104D002534C7 /* M3u8Collector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1682915104D002534C7 /* M3u8Collector.swift */; };
-		FB8BE1732915104D002534C7 /* VideoSegmenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1692915104D002534C7 /* VideoSegmenter.swift */; };
+		FB8BE1732915104D002534C7 /* HLSVideoSegmenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1692915104D002534C7 /* HLSVideoSegmenter.swift */; };
 		FB8BE1742915104D002534C7 /* FMP4Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE16A2915104D002534C7 /* FMP4Configuration.swift */; };
 		FB8BE17729151064002534C7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FB8BE17629151064002534C7 /* Swifter */; };
 		FB8BE17A2915107A002534C7 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = FB8BE1792915107A002534C7 /* WebRTC */; };
@@ -31,6 +31,8 @@
 		FB8BE1892915118C002534C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1862915118C002534C7 /* ContentView.swift */; };
 		FB8BE18A2915118C002534C7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1872915118C002534C7 /* InfoView.swift */; };
 		FB8BE18B2915118C002534C7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1882915118C002534C7 /* SettingsView.swift */; };
+		FB8BE192291519AA002534C7 /* ScreencapContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE191291519AA002534C7 /* ScreencapContext.swift */; };
+		FB8BE19429152051002534C7 /* Webserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE19329152051002534C7 /* Webserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +78,7 @@
 		FB8BE1662915104D002534C7 /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		FB8BE1672915104D002534C7 /* HLSServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLSServer.swift; sourceTree = "<group>"; };
 		FB8BE1682915104D002534C7 /* M3u8Collector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M3u8Collector.swift; sourceTree = "<group>"; };
-		FB8BE1692915104D002534C7 /* VideoSegmenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSegmenter.swift; sourceTree = "<group>"; };
+		FB8BE1692915104D002534C7 /* HLSVideoSegmenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLSVideoSegmenter.swift; sourceTree = "<group>"; };
 		FB8BE16A2915104D002534C7 /* FMP4Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMP4Configuration.swift; sourceTree = "<group>"; };
 		FB8BE17B29151084002534C7 /* UserStreamConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStreamConfiguration.swift; sourceTree = "<group>"; };
 		FB8BE17E291510A3002534C7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		FB8BE1882915118C002534C7 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FB8BE18D2915122C002534C7 /* Wingspan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wingspan.entitlements; sourceTree = "<group>"; };
 		FB8BE18E29151232002534C7 /* ScreencapExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreencapExtension.entitlements; sourceTree = "<group>"; };
+		FB8BE191291519AA002534C7 /* ScreencapContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreencapContext.swift; sourceTree = "<group>"; };
+		FB8BE19329152051002534C7 /* Webserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,17 +171,14 @@
 		FB8BE1562915102D002534C7 /* ScreencapExtension */ = {
 			isa = PBXGroup;
 			children = (
+				FB8BE190291518FC002534C7 /* WebRTC */,
+				FB8BE18F291518F5002534C7 /* HLS */,
 				FB8BE18E29151232002534C7 /* ScreencapExtension.entitlements */,
-				FB8BE16A2915104D002534C7 /* FMP4Configuration.swift */,
-				FB8BE1672915104D002534C7 /* HLSServer.swift */,
-				FB8BE1622915104D002534C7 /* HtmlComponents.swift */,
-				FB8BE1642915104D002534C7 /* HtmlLibraryComponents.swift */,
-				FB8BE1682915104D002534C7 /* M3u8Collector.swift */,
 				FB8BE1652915104D002534C7 /* SampleHandler.swift */,
-				FB8BE1662915104D002534C7 /* Segment.swift */,
-				FB8BE1692915104D002534C7 /* VideoSegmenter.swift */,
 				FB8BE1592915102D002534C7 /* Info.plist */,
 				FB8BE1612915104D002534C7 /* ScreencapExtension-Bridging-Header.h */,
+				FB8BE191291519AA002534C7 /* ScreencapContext.swift */,
+				FB8BE19329152051002534C7 /* Webserver.swift */,
 			);
 			path = ScreencapExtension;
 			sourceTree = "<group>";
@@ -190,6 +191,27 @@
 				FB8BE1882915118C002534C7 /* SettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FB8BE18F291518F5002534C7 /* HLS */ = {
+			isa = PBXGroup;
+			children = (
+				FB8BE16A2915104D002534C7 /* FMP4Configuration.swift */,
+				FB8BE1672915104D002534C7 /* HLSServer.swift */,
+				FB8BE1622915104D002534C7 /* HtmlComponents.swift */,
+				FB8BE1642915104D002534C7 /* HtmlLibraryComponents.swift */,
+				FB8BE1682915104D002534C7 /* M3u8Collector.swift */,
+				FB8BE1662915104D002534C7 /* Segment.swift */,
+				FB8BE1692915104D002534C7 /* HLSVideoSegmenter.swift */,
+			);
+			path = HLS;
+			sourceTree = "<group>";
+		};
+		FB8BE190291518FC002534C7 /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WebRTC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,7 +349,9 @@
 				FB8BE1712915104D002534C7 /* HLSServer.swift in Sources */,
 				FB8BE1722915104D002534C7 /* M3u8Collector.swift in Sources */,
 				FB8BE1702915104D002534C7 /* Segment.swift in Sources */,
-				FB8BE1732915104D002534C7 /* VideoSegmenter.swift in Sources */,
+				FB8BE1732915104D002534C7 /* HLSVideoSegmenter.swift in Sources */,
+				FB8BE192291519AA002534C7 /* ScreencapContext.swift in Sources */,
+				FB8BE19429152051002534C7 /* Webserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
