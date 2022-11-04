@@ -4,7 +4,7 @@
 //
 //  https://developer.apple.com/videos/play/wwdc2020/10011/ was heavily referenced
 //  in the creation of this file.
-//
+//  
 //  Created by @jdkula <jonathan@jdkula.dev> on 11/1/22.
 //
 

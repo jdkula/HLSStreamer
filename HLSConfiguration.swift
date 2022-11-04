@@ -67,7 +67,7 @@ class UserHLSConfigObserver : ObservableObject {
 extension UserHLSConfiguration {
     private static func fileURL_() throws -> URL? {
         FileManager.default.containerURL(
-            forSecurityApplicationGroupIdentifier: "group.dev.jdkula.HLSStreamer.config"
+            forSecurityApplicationGroupIdentifier: "group.dev.jdkula.Wingspan.config"
         )?.appendingPathComponent("HLSStreamer.config")
     }
     

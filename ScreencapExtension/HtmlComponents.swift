@@ -61,32 +61,6 @@ let kIndexHtml = """
             }
             setTimeout(updateOrientation, 1000);
         </script>
-        <script>
-            let lastErr = null;
-            let lastBufferEnd = null;
-            let lastBufferEndTs = null;
-            async function findError() {
-                if (player.readyState() === 0) {
-                    if (lastErr === null) {
-                        lastErr = Date.now();
-                    } else if (Date.now() - lastErr > 2000) {
-                        window.location.reload();
-                    }
-                } else {
-                    lastErr = null;
-                }
-
-                if (lastBufferEnd !== player.bufferedEnd()) {
-                    lastBufferEnd = player.bufferedEnd();
-                    lastBufferEndTs = Date.now();
-                }
-                if (Date.now() - lastBufferEndTs > 10000) {
-                    window.location.reload();
-                }
-                setTimeout(findError, 1000);
-            }
-            setTimeout(findError, 1000);
-        </script>
     </body>
 </html>
 """

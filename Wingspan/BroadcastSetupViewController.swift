@@ -19,7 +19,7 @@ class BroadcastSetupViewController: UIViewController {
         
         // Create broadcast picker, and customize it as much as possiuble
         let broadcastPicker = RPSystemBroadcastPickerView(frame: CGRect(x: 0, y: 0, width: 400, height: 100))
-        broadcastPicker.preferredExtension = "dev.jdkula.HLSStreamer.HLSStreamerContentUploadExtension"
+        broadcastPicker.preferredExtension = "dev.jdkula.Wingspan.ScreencapExtension"
         broadcastPicker.showsMicrophoneButton = false;
         
         // Adjust tint and move the button up a little bit to make room for the label
