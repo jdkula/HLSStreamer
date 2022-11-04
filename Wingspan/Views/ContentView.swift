@@ -12,8 +12,9 @@ import ReplayKit
 import Combine
 
 struct ContentView: View {
-    @Binding var config: UserHLSConfiguration
+    @Binding var config: UserStreamConfiguration
     @Binding var isStreaming: Bool
+    @Binding var isRealtime: Bool
     
     var body: some View {
         ScrollView {
@@ -27,7 +28,7 @@ struct ContentView: View {
                 }
                 
                 // <== Info Section ==>
-                InfoView(isStreaming: $isStreaming, config: $config)
+                InfoView(isStreaming: $isStreaming, config: $config, isRealtime: $isRealtime)
                 
                 // <== Start Recording Button ==>
                 if #available(iOS 15.0, *) {
@@ -41,7 +42,7 @@ struct ContentView: View {
                 }
                 
                 // <== Settings ==>
-                SettingsView(isStreaming: $isStreaming, config: $config)
+                SettingsView(isStreaming: $isStreaming, config: $config, isRealtime: $isRealtime)
             }).padding()
             
             Spacer()
@@ -51,7 +52,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(config: .constant(UserHLSConfiguration()), isStreaming: .constant(false))
+        ContentView(config: .constant(UserStreamConfiguration()), isStreaming: .constant(false), isRealtime: .constant(false))
     }
 }
 

@@ -25,8 +25,8 @@
 		FB8BE1742915104D002534C7 /* FMP4Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE16A2915104D002534C7 /* FMP4Configuration.swift */; };
 		FB8BE17729151064002534C7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FB8BE17629151064002534C7 /* Swifter */; };
 		FB8BE17A2915107A002534C7 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = FB8BE1792915107A002534C7 /* WebRTC */; };
-		FB8BE17C29151084002534C7 /* HLSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE17B29151084002534C7 /* HLSConfiguration.swift */; };
-		FB8BE17D29151084002534C7 /* HLSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE17B29151084002534C7 /* HLSConfiguration.swift */; };
+		FB8BE17C29151084002534C7 /* UserStreamConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE17B29151084002534C7 /* UserStreamConfiguration.swift */; };
+		FB8BE17D29151084002534C7 /* UserStreamConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE17B29151084002534C7 /* UserStreamConfiguration.swift */; };
 		FB8BE1822915110A002534C7 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = FB8BE1812915110A002534C7 /* Swifter */; };
 		FB8BE1892915118C002534C7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1862915118C002534C7 /* ContentView.swift */; };
 		FB8BE18A2915118C002534C7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8BE1872915118C002534C7 /* InfoView.swift */; };
@@ -78,7 +78,7 @@
 		FB8BE1682915104D002534C7 /* M3u8Collector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = M3u8Collector.swift; sourceTree = "<group>"; };
 		FB8BE1692915104D002534C7 /* VideoSegmenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSegmenter.swift; sourceTree = "<group>"; };
 		FB8BE16A2915104D002534C7 /* FMP4Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMP4Configuration.swift; sourceTree = "<group>"; };
-		FB8BE17B29151084002534C7 /* HLSConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLSConfiguration.swift; sourceTree = "<group>"; };
+		FB8BE17B29151084002534C7 /* UserStreamConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStreamConfiguration.swift; sourceTree = "<group>"; };
 		FB8BE17E291510A3002534C7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FB8BE17F291510A3002534C7 /* Icon.draft1.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = Icon.draft1.afdesign; sourceTree = "<group>"; };
 		FB8BE1862915118C002534C7 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		FB8BE12929150FD0002534C7 = {
 			isa = PBXGroup;
 			children = (
-				FB8BE17B29151084002534C7 /* HLSConfiguration.swift */,
+				FB8BE17B29151084002534C7 /* UserStreamConfiguration.swift */,
 				FB8BE17F291510A3002534C7 /* Icon.draft1.afdesign */,
 				FB8BE17E291510A3002534C7 /* README.md */,
 				FB8BE13429150FD0002534C7 /* Wingspan */,
@@ -309,7 +309,7 @@
 				FB8BE14B29151002002534C7 /* Util.swift in Sources */,
 				FB8BE18B2915118C002534C7 /* SettingsView.swift in Sources */,
 				FB8BE1892915118C002534C7 /* ContentView.swift in Sources */,
-				FB8BE17C29151084002534C7 /* HLSConfiguration.swift in Sources */,
+				FB8BE17C29151084002534C7 /* UserStreamConfiguration.swift in Sources */,
 				FB8BE13629150FD0002534C7 /* WingspanApp.swift in Sources */,
 				FB8BE14D29151002002534C7 /* ContentUploadUILaunch.swift in Sources */,
 			);
@@ -323,7 +323,7 @@
 				FB8BE1742915104D002534C7 /* FMP4Configuration.swift in Sources */,
 				FB8BE16C2915104D002534C7 /* HtmlComponents.swift in Sources */,
 				FB8BE16F2915104D002534C7 /* SampleHandler.swift in Sources */,
-				FB8BE17D29151084002534C7 /* HLSConfiguration.swift in Sources */,
+				FB8BE17D29151084002534C7 /* UserStreamConfiguration.swift in Sources */,
 				FB8BE1712915104D002534C7 /* HLSServer.swift in Sources */,
 				FB8BE1722915104D002534C7 /* M3u8Collector.swift in Sources */,
 				FB8BE1702915104D002534C7 /* Segment.swift in Sources */,

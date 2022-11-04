@@ -15,7 +15,7 @@ import VideoToolbox
 class SampleHandler: RPBroadcastSampleHandler {
     private var targetDir_: URL
     
-    private var userConfig_: UserHLSConfiguration
+    private var userConfig_: UserStreamConfiguration
     
     private var server_: HLSServer?
     private var seg_: VideoSegmenter
@@ -86,7 +86,7 @@ class SampleHandler: RPBroadcastSampleHandler {
         }
         
         // Try to load stream configuration options from disk
-        userConfig_ = (try? UserHLSConfiguration.loadSync()) ?? UserHLSConfiguration();
+        userConfig_ = (try? UserStreamConfiguration.loadSync()) ?? UserStreamConfiguration();
 
         seg_ = VideoSegmenter(outputDir: self.targetDir_, config: userConfig_)
         m3u8_ = M3u8Collector(folderPrefix: "video")

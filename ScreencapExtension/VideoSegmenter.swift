@@ -16,7 +16,7 @@ import AVKit
  * fMP4 segments, which are later passed to the callback defined by ``VideoSegmenter.setOnSegment``
  */
 class VideoSegmenter: NSObject, AVAssetWriterDelegate {
-    private var config_: UserHLSConfiguration
+    private var config_: UserStreamConfiguration
     
     private var outputWriter_: AVAssetWriter?
     private var videoIn_: AVAssetWriterInput?
@@ -31,7 +31,7 @@ class VideoSegmenter: NSObject, AVAssetWriterDelegate {
     
     private var onSegment_: ((Segment) -> Void)?
     
-    init(outputDir: URL, config: UserHLSConfiguration) {
+    init(outputDir: URL, config: UserStreamConfiguration) {
         outputDir_ = outputDir
         sessionStarted_ = false
         finished_ = false

@@ -39,7 +39,7 @@ struct FMP4Configuration {
             AVVideoWidthKey: width,
             AVVideoHeightKey: height,
         ]
-        if (videoBitrateMbps != UserHLSConfiguration.kLossless) {
+        if (videoBitrateMbps != UserStreamConfiguration.kLossless) {
             self.videoCompressionSettings[AVVideoCompressionPropertiesKey] = [
                 kVTCompressionPropertyKey_AverageBitRate: videoBitrateMbps * 1_000_000,
                 kVTCompressionPropertyKey_ProfileLevel: kVTProfileLevel_H264_Main_5_2,

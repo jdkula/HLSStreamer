@@ -13,8 +13,9 @@
 import Foundation
 
 /// Struct representing the user-configurable aspects of the application.
-struct UserHLSConfiguration : Codable {
+struct UserStreamConfiguration : Codable {
     static let kLossless = 10.5
+    static let kRealtime = 0.0
     
     var port: String
     var segmentDuration: Double
@@ -23,8 +24,8 @@ struct UserHLSConfiguration : Codable {
     
     init() {
         self.port = "8888"
-        self.segmentDuration = 2
-        self.videoBitrateMbps = UserHLSConfiguration.kLossless
+        self.segmentDuration = UserStreamConfiguration.kRealtime
+        self.videoBitrateMbps = UserStreamConfiguration.kLossless
         self.rotation = "auto"
     }
     
@@ -35,24 +36,24 @@ struct UserHLSConfiguration : Codable {
         self.rotation = rotation
     }
     
-    func withPort(_ port: String) -> UserHLSConfiguration {
-        return UserHLSConfiguration(port: port, segmentDuration: self.segmentDuration, videoBitrateMbps: self.videoBitrateMbps, rotation: self.rotation)
+    func withPort(_ port: String) -> UserStreamConfiguration {
+        return UserStreamConfiguration(port: port, segmentDuration: self.segmentDuration, videoBitrateMbps: self.videoBitrateMbps, rotation: self.rotation)
     }
     
-    func withSegmentDuration(_ segmentDuration: Double) -> UserHLSConfiguration {
-        return UserHLSConfiguration(port: self.port, segmentDuration: segmentDuration, videoBitrateMbps: self.videoBitrateMbps, rotation: self.rotation)
+    func withSegmentDuration(_ segmentDuration: Double) -> UserStreamConfiguration {
+        return UserStreamConfiguration(port: self.port, segmentDuration: segmentDuration, videoBitrateMbps: self.videoBitrateMbps, rotation: self.rotation)
     }
     
-    func withVideoBitrateMbps(_ videoBitrateMbps: Double) -> UserHLSConfiguration {
-        return UserHLSConfiguration(port: self.port, segmentDuration: self.segmentDuration, videoBitrateMbps: videoBitrateMbps, rotation: self.rotation)
+    func withVideoBitrateMbps(_ videoBitrateMbps: Double) -> UserStreamConfiguration {
+        return UserStreamConfiguration(port: self.port, segmentDuration: self.segmentDuration, videoBitrateMbps: videoBitrateMbps, rotation: self.rotation)
     }
 }
 
 /// Observable wrapper around UserHLSConfiguration that auto-saves every time it is set.
-class UserHLSConfigObserver : ObservableObject {
-    @Published var config: UserHLSConfiguration = UserHLSConfiguration() {
+class UserStreamConfigObserver : ObservableObject {
+    @Published var config: UserStreamConfiguration = UserStreamConfiguration() {
         didSet {
-            UserHLSConfiguration.save(config: config)
+            UserStreamConfiguration.save(config: config)
         }
     }
 }
@@ -64,40 +65,40 @@ class UserHLSConfigObserver : ObservableObject {
  * Note that the failure mode of these functions are to return a default configuration,
  * not throw errors.
  */
-extension UserHLSConfiguration {
+extension UserStreamConfiguration {
     private static func fileURL_() throws -> URL? {
         FileManager.default.containerURL(
             forSecurityApplicationGroupIdentifier: "group.dev.jdkula.Wingspan.config"
         )?.appendingPathComponent("HLSStreamer.config")
     }
     
-    static func loadSync() throws -> UserHLSConfiguration {
+    static func loadSync() throws -> UserStreamConfiguration {
         guard let fileURL = try fileURL_() else {
-            return UserHLSConfiguration()
+            return UserStreamConfiguration()
         }
         guard let file = try? FileHandle(forReadingFrom: fileURL) else {
-            return UserHLSConfiguration()
+            return UserStreamConfiguration()
         }
-        let info = try JSONDecoder().decode(UserHLSConfiguration.self, from: file.availableData)
+        let info = try JSONDecoder().decode(UserStreamConfiguration.self, from: file.availableData)
         return info
     }
     
-    static func load(onComplete: @escaping ((Result<UserHLSConfiguration, Error>) -> Void)) {
+    static func load(onComplete: @escaping ((Result<UserStreamConfiguration, Error>) -> Void)) {
         DispatchQueue.global(qos: .background).async {
             do {
                 guard let fileURL = try fileURL_() else {
                     DispatchQueue.main.async {
-                        onComplete(.success(UserHLSConfiguration()))
+                        onComplete(.success(UserStreamConfiguration()))
                     }
                     return
                 }
                 guard let file = try? FileHandle(forReadingFrom: fileURL) else {
                     DispatchQueue.main.async {
-                        onComplete(.success(UserHLSConfiguration()))
+                        onComplete(.success(UserStreamConfiguration()))
                     }
                     return
                 }
-                let info = try JSONDecoder().decode(UserHLSConfiguration.self, from: file.availableData)
+                let info = try JSONDecoder().decode(UserStreamConfiguration.self, from: file.availableData)
                 DispatchQueue.main.async {
                     onComplete(.success(info))
                 }
@@ -107,7 +108,7 @@ extension UserHLSConfiguration {
         }
     }
     
-    static func save(config: UserHLSConfiguration) {
+    static func save(config: UserStreamConfiguration) {
         do {
             let data = try JSONEncoder().encode(config)
             guard let fileURL = try fileURL_() else {

@@ -11,20 +11,25 @@ import SwiftUI
 
 @main
 struct HLSStreamerApp: App {
-    @StateObject private var config: UserHLSConfigObserver = UserHLSConfigObserver()
+    @StateObject private var config: UserStreamConfigObserver = UserStreamConfigObserver()
     
     @State private var isStreaming = UIScreen.main.isCaptured
     
+    @State private var isRealtime = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(config: $config.config, isStreaming: $isStreaming).onAppear {
+            ContentView(config: $config.config, isStreaming: $isStreaming, isRealtime: $isRealtime).onAppear {
                 // Load config values
-                UserHLSConfiguration.load { result in
+                UserStreamConfiguration.load { result in
                     switch result {
                     case .failure:
-                        config.config = UserHLSConfiguration()
+                        config.config = UserStreamConfiguration()
                     case .success(let cfg):
                         config.config = cfg;
+                    }
+                    withAnimation {
+                        isRealtime = config.config.segmentDuration == UserStreamConfiguration.kRealtime
                     }
                 }
                 
